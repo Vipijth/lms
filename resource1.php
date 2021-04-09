@@ -1,0 +1,924 @@
+<?php
+include("header.php");
+include ("connection.php");
+$id = $_POST['rid'];
+
+if(isset($_POST["enroll"])) {
+    $subid = $_POST["subid"];
+    $userid = $_POST["userid"];
+    $type = $_POST["type"];
+    $category = 'free';
+    $sqlenroll = 'INSERT INTO user_courses(category, type,subid, userid ) VALUES 
+   ("' . $category . '","' . $type . '","' . $subid . '","' . $userid . '")';
+
+    if ($conn->query($sqlenroll) === TRUE) {
+
+
+    } else {
+
+    }
+}
+
+if(isset($_POST["addtocart"])) {
+    $subid = $_POST["subid"];
+    $subname = $_POST["subname"];
+    $userid = $_POST["userid"];
+    $useremail = $_POST["useremail"];
+    $type = $_POST["subtype"];
+    $amount =  $_POST["amount"];
+    $sqlenroll = 'INSERT INTO cart(name, courseid,category, cartuser,useremail,amount ) VALUES 
+   ("' . $subname . '","' . $subid . '","' . $type . '","' . $userid . '","' . $useremail . '","' . $amount . '")';
+
+    if ($conn->query($sqlenroll) === TRUE) {
+
+     echo "<script> alert('Successfully Added...!');</script>" ;
+    } else {
+
+    }
+}
+
+?>
+<body style="overflow-x: hidden">
+<style>
+  body
+    {
+
+
+        font-family: segoe ui semibold !important;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        `<?php
+        $slidersql= "SELECT * FROM slider";
+        $sliderresult = $conn->query($slidersql);
+        if ($sliderresult->num_rows > 0) {
+
+            while($row = $sliderresult->fetch_assoc()) {
+                $image=$row['slider'];
+                $title=$row['coupen'];
+                $cat=$row['category'];
+                if($cat=='resources' ){
+                    ?>
+                    <div class="col-md-12"  id="coursebg" style="background-image:url('admin/uploads/slider/<?php echo $image; ?>' )">
+
+                        <div id="pageimg">
+
+                            <img class="d-block w-100" src="assets/user/images/resourcebg.png" alt="">
+                        </div>
+                        <div id="coupon">
+                            <center>
+                                <br><br><br>
+                                <font color="#6B4B20">
+                                    <?php echo $title; ?>
+                                </font>
+                                <br>
+                                <font color="#EB4D5E">
+                                    <small>FOR FIRST TIME USERS</small>
+                                </font>
+                                <br><br style="line-height:.8">
+                                <button id="coupbutton">
+                                    Sign In Now !
+                                </button>
+                            </center>
+                        </div>
+                    </div>
+                <?php }}} ?>
+    </div>
+	
+	  <div class="row justify-content-md-center" style="background:#455A64;height:110px">
+
+          <!-- <div class="col-md-8" style="height:60px">
+             <center>
+                <input  class="form-control mr-sm-2" type="search" id="searchcourse" placeholder="&#xF002; Let's find out what you are looking for" aria-label="Search" style="font-family:Segoe UI, FontAwesome">
+             </center>
+          </div>
+          <div class="col-md-5" style="padding:10px 10px;height:35px;background:#EB4C5E;font-family:Segoe UI semibold;color:white">
+
+                <ul id="searchul">
+                    <li style="padding: 0px 10px;list-style: none">
+                      Top Searches:
+                   </li>
+
+                </ul>
+
+          </div>-->
+		
+	  </div>
+	  
+	  
+	  
+	  <br><br>
+
+    <?php
+    $resourcesql= "SELECT * FROM resources where id='$id'";
+    $resourceresult = $conn->query($resourcesql);
+    if ($resourceresult->num_rows > 0) {
+
+    while($row = $resourceresult->fetch_assoc()) {
+    $image=$row['image'];
+    $title=$row['name'];
+    $cat=$row['category'];
+    $about=$row['about'];
+    $amount=$row['amount'];
+        $skill1=$row['skill1'];
+        $skill2=$row['skill2'];
+        $skill3=$row['skill3'];
+        $skill4=$row['skill4'];
+    $rid=$row['id'];
+    ?>
+	  <div class="row justify-content-md-center" style="background:white">
+			<div class="col-md-10" style="height:auto;background:white;font-family:Segoe UI semibold;font-size:14px;text-align:left;color:#F36978;"> 
+      <big> <?php echo $title; ?></big>
+
+                <div class="row" >
+			  
+				  <div class="col-md-6 col-sm-6 col-lg-5" style="margin:4px;height:300px;">
+					
+								<img src="admin/uploads/Resources/<?php echo $title; ?>/image/<?php echo $image; ?>" style="height:100%;width:100%">
+							
+				  </div>
+				   <div class="col-md-6 col-sm-6 col-lg-6" style="margin:4px">
+				   <center>
+				   <br><br>
+				   <a href="#about">
+				   <img src="assets/user/images/aboutbutton.png" style="height:90px">
+				   </a>
+				    <a href="#instructor">
+				      <img src="assets/user/images/instructorbutton.png" style="height:90px">
+					  </a>
+					   <a href="#syllabus">
+					     <img src="assets/user/images/syllabusbutton.png" style="height:90px">
+						 </a>
+						  <a href="#review">
+						    <img src="assets/user/images/reviewbutton.png" style="height:90px">
+							</a>
+							
+							<br><br><br>
+							<br>
+
+                       <?php     if (isset($_SESSION['userid'])) {
+                           if($_SESSION['utype']=='teacher') { ?>
+                       <?php if($cat=='free'){ ?>
+                               <?php
+            if (isset($_SESSION['userid'])) {?>
+
+							<div  style="border:1px dotted #707070;height:40px;width:180px;padding:10px 10px;color:#F36978">
+							Free Course
+							</div>
+                       <div class="row justify-content-md-center">
+                           <?php
+                           $usid=$_SESSION['userid'];
+                           $checksql= "SELECT * FROM user_courses where category='free' and type='resource' and userid='$usid' and subid=$id limit 1";
+                           $checkresult = $conn->query($checksql);
+                           if ($checkresult->num_rows > 0) {
+                               while($row = $checkresult->fetch_assoc()) {?>
+
+
+
+                               <div  class="col-md-3" style="font-size:20px;margin:5px;height:20px;padding:5px 10px;color:#F36978;">
+                                <a href="dashboard.php">
+
+                                       <button   Style="width:100%;padding:10px 1px;font-size:10px;border:none; background:#EB4C5E; color:white;font-family: Segoe UI semibold">
+
+                                           Go to Dashboard</button>
+                                </a>
+                               </div>
+                       <?php }}else{?>
+                               <div  class="col-md-3" style="font-size:20px;margin:5px;height:20px;padding:5px 10px;color:#F36978;">
+                                   <form action="" method="post">
+                                       <input type="hidden" value="<?php echo $id; ?>" name="rid">
+                                       <input type="hidden" value="<?php echo $rid; ?>" name="subid">
+                                       <input type="hidden" value="<?php echo $_SESSION['userid']; ?>" name="userid">
+                                       <input type="hidden" value="resource" name="type">
+
+                                       <button  name="enroll" Style="width:100%;padding:10px 1px;font-size:10px;border:none; background:#EB4C5E; color:white;font-family: Segoe UI semibold">
+                                          Enroll now</button>
+                                   </form>
+                               </div>
+
+                                   <?php } ?>
+
+                       </div>
+
+                <?php }  else{?>
+                <div  style="border:1px dotted #707070;height:40px;width:180px;padding:10px 10px;color:#F36978">
+                    Free Course
+                </div>
+
+            <?php } ?>
+                       <?php } ?>
+
+                       <?php if($cat=='paid'){ ?>
+                           <div  style="border:1px dotted #707070;height:40px;width:180px;padding:6px 10px;color:#F36978">
+                              <big> &#8377; <?php echo $amount ?> </big>
+                           </div>
+
+                       <div class="row justify-content-md-center">
+
+                           <?php
+                                   $usid3=$_SESSION['userid'];
+                                   $checksql3= "SELECT * FROM oc where userid='$usid3' and category='resource'  and courseid='$id' and status='1'";
+                                   $checkresult3 = $conn->query($checksql3);
+                                   if ($checkresult3->num_rows < 1) {
+                           $usid2=$_SESSION['userid'];
+                           $checksql1= "SELECT * FROM cart where cartuser='$usid2' and category='resource'  and courseid='$id'";
+                           $checkresult1 = $conn->query($checksql1);
+                           if ($checkresult1->num_rows < 1) {
+                          ?>
+                           <div  class="col-md-2" style="font-size:20px;margin:5px;height:20px;padding:5px 10px;color:#F36978;">
+                               <form action="" method="post">
+                                   <input type="hidden" value="<?php echo $id; ?>" name="rid">
+                                   <input type="hidden" name="subname" value="<?php echo $title; ?>">
+                                   <input type="hidden" name="useremail" value="<?php echo $_SESSION['useremail']; ?>">
+                                   <input type="hidden" name="userid" value="<?php echo $_SESSION['userid']; ?>">
+                                   <input type="hidden" name="subid" value="<?php echo $id; ?>">
+                                   <input type="hidden" name="subtype" value="resource">
+                                   <input type="hidden" name="amount" value="<?php echo $amount; ?>">
+                               <button Style="width:100%;padding:10px 1px;font-size:10px;border:none; background:#EB4C5E; color:white;font-family: Segoe UI semibold" name="addtocart">
+                                   Add to Cart</button>
+                               </form>
+                           </div>
+                               <?php }else{?>
+                               <div class="col-md-3"  style="margin:5px;height:20px;padding:5px 10px;color:#F36978;">
+                                   <a href="cart.php">
+                                   <button Style="width:100%;padding:10px 1px;font-size:10px;border:none; background:#EB4C5E; color:white;font-family: Segoe UI semibold">
+
+                                    Go to Cart</button></a>
+                               </div>
+                                   <?php }?>
+                           <div class="col-md-2"  style="margin:5px;height:20px;padding:5px 10px;color:#F36978;">
+                               <button Style="width:100%;padding:10px 1px;font-size:10px;border:none; background:#EB4C5E; color:white;font-family: Segoe UI semibold">
+
+                                   Buy Now</button>
+                           </div>
+
+                       </div>
+                       <?php } else{?>
+
+                                       <div class="col-md-4"  style="margin:5px;height:20px;padding:5px 10px;color:#F36978;">
+                                           <a href="dashboard.php">
+                                           <button Style="width:100%;padding:10px 1px;font-size:10px;border:none; background:#EB4C5E; color:white;font-family: Segoe UI semibold">
+
+                                               Go to Dashboard</button> </a>
+                                       </div>
+                    <?php } } ?>
+
+
+                       <?php }} else {
+            if ($cat == 'paid') {
+                ?>
+            <div  style="border:1px dotted #707070;height:40px;width:180px;padding:6px 10px;color:#F36978">
+
+
+                <big> &#8377; <?php
+                    echo $amount ?> </big>
+            </div>
+                <div  style="height:40px;width:180px;padding:6px 10px;color:#F36978">
+
+                    <button  name="Add To Cart" Style="width:100%;padding:10px 1px;font-size:10px;border:none; background:#EB4C5E; color:white;font-family: Segoe UI semibold" onclick="alert('Please Login to Enroll')">
+                        Add To Cart</button>
+                </div>
+            <?php } else{ ?>
+                <div  style="border:1px dotted #707070;height:40px;width:180px;padding:6px 10px;color:#F36978">
+
+
+                    <big>Free</big>
+                </div>
+                       <div  style="height:40px;width:180px;padding:6px 10px;color:#F36978">
+
+                       <button  name="enroll" Style="width:100%;padding:10px 1px;font-size:10px;border:none; background:#EB4C5E; color:white;font-family: Segoe UI semibold" onclick="alert('Please Login to Enroll')">
+                    Enroll now</button>
+                       </div>
+                           <?php  }}?>
+
+
+				   </center>
+				  </div>
+
+			  </div>
+			</div>
+			<section id="about">
+      </div>
+	  <br><br>
+	  
+	  
+	  
+	  
+	  
+	  <div class="row justify-content-md-center" style="background:white">
+			<div class="col-md-10">
+			
+              <div class="row"  style="background:white;font-family:Segoe UI semibold;font-size:23px;text-align:justify!important;color:#707070;">
+			  About
+
+                  <br style="line-height:.8"> <br style="line-height:.8">
+			  <small>
+
+                  <p class="m-t-30" style="">
+                      <br style="line-height:.8">
+
+                      <?php
+                      $ab=$about;
+
+                   echo $ab; ?>
+
+                  </p>
+
+			  </small>
+			  </div>
+			 </div>
+		</div>
+		<br>
+		<div class="row justify-content-md-center" style="background:white">
+			<div class="col-md-10"> 
+              <div class="row" style="padding: 14px 30px;background:#0A62A3;font-family:Segoe UI regular;font-size:14px;text-align:left;color:#707070;height:70px">
+			  			
+						
+						<center>
+						<p style="padding: 7px 15px;background:white;color:#0A62A3;border-radius:15px">
+														Skills You Will Gain
+													</p>
+
+													</center>
+						
+						<ul id="searchul">
+						
+													
+													<li style="padding: 10px 15px;color:white;font-size:16px;">
+                                                        <?php echo $skill1; ?>
+													</li>
+													
+															<li style="padding: 10px 15px;color:white;font-size:16px;">
+                                                                <?php echo $skill4; ?>
+													</li>
+															<li style="padding: 10px 15px;color:white;font-size:16px;">
+                                                                <?php echo $skill3; ?>
+													</li>
+															<li style="padding: 10px 15px;color:white;font-size:16px;">
+                                                                <?php echo $skill2; ?>
+													</li>
+
+													
+			</div>
+		 </div><section id="instructor"> </section>
+		</div>
+	  
+
+	<br>
+	<br>
+
+
+    <?php
+    $instructorsql= "SELECT * FROM instructor where resourceid='$id'";
+    $instructorresult = $conn->query($instructorsql);
+    if ($instructorresult->num_rows > 0) {
+        ?>
+<div class="row justify-content-md-center" style="background:white;font-family:Segoe UI regular;font-size:16px;text-align:left;color:#0A62A3;">
+<div class="col-md-10">
+<span style="color:#707070;font-family:Segoe UI semibold;">Instructor</span>
+<br>	<br>
+<div class="row" style="background:white;">
+
+
+<br style="line-height:.8">
+
+
+<?php
+
+        while($row = $instructorresult->fetch_assoc()) {
+            $instid=$row['instructorId'];
+            $facultysql= "SELECT * FROM faculty where id='$instid'";
+            $facresult = $conn->query($facultysql);
+            if ($facresult->num_rows > 0) {
+
+                while($row = $facresult->fetch_assoc()) {
+                    $fname=$row['fname'];
+                    $lname=$row['lname'];
+                    $fimage=$row['imageName'];
+            ?>
+
+  <div class="col-md-3 col-sm-3 col-lg-3" style="margin:5px;height:150px">
+          <div  style="float:left">
+          <img src="admin/uploads/faculty/<?php echo $fimage; ?>"  style="height:140px;width:180px">
+          </div>
+          <div  style="float:right;padding:0%">
+
+                  <?php echo $fname ?>
+          </div>
+  </div>
+  <?php }} }}?>
+
+				
+				</div>
+			  </div>
+			 </div>
+
+        <section id="syallabus  "> </section>
+		<br>
+		
+		<br>
+		<?php }} ?>
+
+
+
+
+    <?php
+                  $rfilesql= "SELECT * FROM resources_files where Rid='$id' and filetype='video'";
+                  $rfileresult = $conn->query($rfilesql);
+                  if ($rfileresult->num_rows > 0) {
+
+                     //
+
+                          ?>
+
+
+
+
+
+		  <div class="row justify-content-md-center" style="background:white;font-family:Segoe UI regular;font-size:18px;text-align:left;color:#707070;">
+			<div  class="col-md-10">
+                <?php   if (isset($_SESSION['userid'])) {?>
+                <?php if($cat=='free'){ ?>
+                          <div style="float:left">
+                              Videos
+                          </div>
+                          <div style="float:right;padding:5px">
+                              <center>
+                                  <img src="assets/user/images/Icon ionic-md-eye.png" style="height:15px">
+                                  <img src="assets/user/images/Icon feather-unlock.png" style="height:15px">
+                              </center>
+                          </div>
+
+                          <br style="line-height:1">
+                          <hr/ style="border-bottom:2px solid #707070">
+                          <br>
+
+                          <div class="row justify-content-md-center" >
+
+						<div class="col-md-10 col-sm-10 col-lg-10"  style="background: #707070">
+                            <iframe name="iframe_a" allowfullscreen="false" style="height:400px;width:100%;"  frameBorder = "0" >
+
+                            </iframe>
+
+						</div>
+
+				</div>
+
+				
+				<br>
+
+			<span style="color:#0A62A3;font-family:Segoe UI regular;"></span>
+			 </div>
+		 </div>
+
+<br>
+    <div class="row   " style="background:white;font-family:Segoe UI regular;font-size:12px;text-align:left;color:#0A62A3;">
+       <?php while($row = $rfileresult->fetch_assoc()) {
+           $filename=$row['filename'];
+           $titles=$row['title']
+           ?>
+        <div  class="col-md-2 col-lg-2 col-sm-2" style="height:190px;margin:20px;box-shadow:0px 1px 1px 1px #E1D6D6;border-bottom: 6px solid #0A62A3 ">
+
+            <a href="admin/uploads/Resources/<?php echo $title; ?>/video/<?php echo $filename; ?>" target="iframe_a">
+<video style="height:150px;width:100%;" >
+    <source id="myVideo" name="myVideo" src="admin/uploads/Resources/<?php echo $title; ?>/video/<?php echo $filename; ?> ">
+</video>
+            </a>
+  <center>
+<?php echo $titles; ?>
+  </center>
+        </div>
+
+
+
+                          <?php }?></div>
+
+                      <?php } } if (!isset($_SESSION['userid']) ||$cat=='paid' ){ ?>
+
+
+                          <div style="float:left">
+                              Videos
+                          </div>
+                          <div style="float:right;padding:5px">
+                              <center>
+                                  <img src="assets/user/images/noeye.png" style="height:15px">
+                                  <img src="assets/user/images/Iconfeather-lock.png" style="height:15px">
+                              </center>
+                          </div>
+
+                          <br style="line-height:1">
+                          <hr/ style="border-bottom:2px solid #707070">
+                          <br>
+
+
+        <div class="row " style="background:white;font-family:Segoe UI regular;font-size:12px;text-align:left;color:#0A62A3;">
+        <?php while($row = $rfileresult->fetch_assoc()) {
+            $filename=$row['filename'];
+            $titles=$row['title']
+            ?>
+            <div  class="col-md-2 col-lg-2 col-sm-2" style="height:190px;margin:10px;box-shadow:0px 1px 1px 1px #E1D6D6;border-bottom: 6px solid #0A62A3 " data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock">
+                  <video style="height:150px;width:100%;"   >
+                        <source id="myVideo" name="myVideo" src="admin/uploads/Resources/<?php echo $title; ?>/video/<?php echo $filename; ?> ">
+                    </video>
+
+                <center>
+                    <?php echo $titles; ?> <img src="assets/user/images/Iconfeather-lock.png" style="height:15px">
+                </center>
+            </div>
+
+
+
+    <?php } ?>
+
+        </div>
+                      <?php } ?><?php } ?>
+
+
+
+
+
+<br>
+</div>
+
+
+
+
+
+    <?php
+    $rfilesqls= "SELECT * FROM resources_files where Rid='$id' and filetype='worksheet'";
+    $rfileresults = $conn->query($rfilesqls);
+    if ($rfileresults->num_rows > 0) {
+        ?>
+
+        <div class="row justify-content-md-center" style="background:white;font-family:Segoe UI regular;font-size:18px;text-align:left;color:#707070;">
+        <div  class="col-md-10">
+
+        <?php   if (isset($_SESSION['userid'])) {?>
+
+        <?php if($cat=='free'){ ?>
+            <div style="float:left">
+               Worksheets
+            </div>
+            <div style="float:right;padding:5px">
+                <center>
+                    <img src="assets/user/images/Icon ionic-md-eye.png" style="height:15px">
+                    <img src="assets/user/images/Icon feather-unlock.png" style="height:15px">
+                </center>
+            </div>
+
+            <br style="line-height:1">
+            <hr/ style="border-bottom:2px solid #707070">
+
+
+
+
+
+            </div>
+            </div>
+
+
+            <div class="row justify-content-md-center " style="background:white;font-family:Segoe UI regular;font-size:12px;text-align:left;color:#0A62A3;">
+                <div  class="col-md-10">
+                    <div class="row">
+                <?php while($row = $rfileresults->fetch_assoc()) {
+                    $filename=$row['filename'];
+                    $titles=$row['title']
+                    ?>
+                    <div  class="col-md-2 col-lg-2 col-sm-1" style="height:180px;margin:15px ;box-shadow:0px 1px 1px 1px #E1D6D6;border-bottom: 6px solid #0A62A3">
+
+                        <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+<?php if(substr($filename,-3)=='doc' || substr($filename,-4)=='docx'){?>
+    <center>
+                              <img src="assets/user/images/doc.png"><br>
+
+                                <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                            </center>
+<?php }?>
+                        </a>
+                        <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                            <?php if(substr($filename,-3)=='ppt' || substr($filename,-4)=='pptx'){?>
+                                <center>
+                                <img src="assets/user/images/ppt.png"><br>
+
+                                    <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                </center>
+                            <?php }?>
+                        </a>
+                        <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                            <?php if(substr($filename,-3)=='pdf' ){?>
+                                <center>
+                                <img src="assets/user/images/pdf.png"><br>
+
+                                    <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                </center>
+                            <?php }?>
+                        </a>
+                        <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                            <?php if(substr($filename,-3)=='mp3' ){?>
+                                <center>
+                                    <img src="assets/user/images/audio.png" style="height:80%"><br>
+
+                                    <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                </center>
+                            <?php }?>
+                        </a>
+
+                    </div>
+
+
+
+                <?php }?></div></div></div>
+
+        <?php }} if (!isset($_SESSION['userid']) ||$cat=='paid' ){?>
+
+
+            <div style="float:left">
+              Worksheets
+            </div>
+            <div style="float:right;padding:5px">
+                <center>
+                    <img src="assets/user/images/noeye.png" style="height:15px">
+                    <img src="assets/user/images/Iconfeather-lock.png" style="height:15px">
+                </center>
+            </div>
+
+            <br style="line-height:1">
+            <hr/ style="border-bottom:2px solid #707070">
+            <br>
+                <?php } ?>
+            </div>
+        <?php } ?>
+
+
+
+
+
+            <?php
+            $rfilesqlx= "SELECT * FROM resources_files where Rid='$id' and filetype='activity'";
+            $rfileresultx = $conn->query($rfilesqlx);
+            if ($rfileresultx->num_rows > 0) {
+            ?>
+
+            <div class="row justify-content-md-center" style="background:white;font-family:Segoe UI regular;font-size:18px;text-align:left;color:#707070;">
+                <div  class="col-md-10">
+
+
+                    <?php   if (isset($_SESSION['userid'])) {?>
+                <?php if($cat=='free'){ ?>
+                    <div style="float:left">
+                        Games and Activity Ideas
+                    </div>
+                    <div style="float:right;padding:5px">
+                        <center>
+                            <img src="assets/user/images/Icon ionic-md-eye.png" style="height:15px">
+                            <img src="assets/user/images/Icon feather-unlock.png" style="height:15px">
+                        </center>
+                    </div>
+
+                    <br style="line-height:1">
+                    <hr/ style="border-bottom:2px solid #707070">
+
+
+
+
+
+                    </div>
+                    </div>
+
+
+                    <div class="row justify-content-md-center " style="background:white;font-family:Segoe UI regular;font-size:12px;text-align:left;color:#0A62A3;">
+                        <div  class="col-md-10">
+                            <div class="row">
+                                <?php while($row = $rfileresultx->fetch_assoc()) {
+                                    $filename=$row['filename'];
+                                    $titles=$row['title']
+                                    ?>
+                                    <div  class="col-md-2 col-lg-2 col-sm-1" style="height:180px;margin:15px ;box-shadow:0px 1px 1px 1px #E1D6D6;border-bottom: 5px solid #0A62A3">
+
+                                        <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                                            <?php if(substr($filename,-3)=='doc' || substr($filename,-4)=='docx'){?>
+                                                <center>
+                                                    <img src="assets/user/images/doc.png"><br>
+
+                                                    <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                                </center>
+                                            <?php }?>
+                                        </a>
+                                        <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                                            <?php if(substr($filename,-3)=='ppt' || substr($filename,-4)=='pptx'){?>
+                                                <center>
+                                                    <img src="assets/user/images/ppt.png"><br>
+
+                                                    <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                                </center>
+                                            <?php }?>
+                                        </a>
+                                        <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                                            <?php if(substr($filename,-3)=='pdf' ){?>
+                                                <center>
+                                                    <img src="assets/user/images/pdf.png"><br>
+
+                                                    <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                                </center>
+                                            <?php }?>
+                                        </a>
+
+                                        <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                                            <?php if(substr($filename,-3)=='mp3' ){?>
+                                                <center>
+                                                    <img src="assets/user/images/audio.png"><br>
+
+                                                    <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                                </center>
+                                            <?php }?>
+                                        </a>
+
+                                    </div>
+
+
+
+                                <?php }?></div></div></div>
+
+                <?php }} if (!isset($_SESSION['userid']) ||$cat=='paid' ){?>
+
+
+
+
+
+
+                        <div style="float:left">
+                            Games and Activity Ideas
+                        </div>
+                        <div style="float:right;padding:5px">
+                            <center>
+                                <img src="assets/user/images/noeye.png" style="height:15px">
+                                <img src="assets/user/images/Iconfeather-lock.png" style="height:15px">
+                            </center>
+                        </div>
+
+                        <br style="line-height:1">
+                        <hr/ style="border-bottom:2px solid #707070">
+                        <br>
+                    <?php } ?>
+                </div>
+                <?php } ?>
+
+
+
+
+
+                <?php
+            $rfilesqlz= "SELECT * FROM resources_files where Rid='$id' and filetype='article'";
+            $rfileresultz = $conn->query($rfilesqlz);
+            if ($rfileresultz->num_rows > 0) {
+            ?>
+
+            <div class="row justify-content-md-center" style="background:white;font-family:Segoe UI regular;font-size:18px;text-align:left;color:#707070;">
+                <div  class="col-md-10">
+
+
+                    <?php   if (isset($_SESSION['userid'])) {?>
+                <?php if($cat=='free'){ ?>
+                    <div style="float:left">
+                        Articles
+                    </div>
+                    <div style="float:right;padding:5px">
+                        <center>
+                            <img src="assets/user/images/Icon ionic-md-eye.png" style="height:15px">
+                            <img src="assets/user/images/Icon feather-unlock.png" style="height:15px">
+                        </center>
+                    </div>
+
+                    <br style="line-height:1">
+                    <hr/ style="border-bottom:2px solid #707070">
+
+
+
+
+
+                    </div>
+                    </div>
+
+
+                    <div class="row justify-content-md-center " style="background:white;font-family:Segoe UI regular;font-size:12px;text-align:left;color:#0A62A3;">
+                        <div  class="col-md-10">
+                            <div class="row">
+                                <?php while($row = $rfileresultz->fetch_assoc()) {
+                                    $filename=$row['filename'];
+                                    $titles=$row['title']
+                                    ?>
+                                    <div  class="col-md-2 col-lg-2 col-sm-1" style="height:180px;margin:15px ;box-shadow:0px 1px 1px 1px #E1D6D6;border-bottom: 5px solid #0A62A3">
+
+                                        <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                                            <?php if(substr($filename,-3)=='doc' || substr($filename,-4)=='docx'){?>
+                                                <center>
+                                                    <img src="assets/user/images/doc.png"><br>
+
+                                                    <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                                </center>
+                                            <?php }?>
+                                        </a>
+                                        <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                                            <?php if(substr($filename,-3)=='ppt' || substr($filename,-4)=='pptx'){?>
+                                                <center>
+                                                    <img src="assets/user/images/ppt.png"><br>
+
+                                                    <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                                </center>
+                                            <?php }?>
+                                        </a>
+                                        <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                                            <?php if(substr($filename,-3)=='pdf' ){?>
+                                                <center>
+                                                    <img src="assets/user/images/pdf.png"><br>
+
+                                                    <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                                </center>
+                                            <?php }?>
+                                        </a>
+                                        <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                                            <?php if(substr($filename,-3)=='mp3' ){?>
+                                                <center>
+                                                    <img src="assets/user/images/audio.png"><br>
+
+                                                    <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                                </center>
+                                            <?php }?>
+                                        </a>
+
+                                    </div>
+
+
+
+                                <?php }?></div></div></div>
+
+                <?php }} if (!isset($_SESSION['userid']) ||$cat=='paid' ){?>
+
+
+
+
+
+
+                        <div style="float:left">
+                            Articles
+                        </div>
+                        <div style="float:right;padding:5px">
+                            <center>
+                                <img src="assets/user/images/noeye.png" style="height:15px">
+                                <img src="assets/user/images/Iconfeather-lock.png" style="height:15px">
+                            </center>
+                        </div>
+
+                        <br style="line-height:1">
+                        <hr/ style="border-bottom:2px solid #707070">
+                        <br>
+                    <?php } ?>
+                </div>
+                <?php } ?>
+
+
+
+
+
+
+
+    <div class="row justify-content-md-center" style="background:white">
+			<div class="col-md-8">
+                <br><br>
+              <div class="row justify-content-md-center" style="background:white;font-family:Segoe UI regular;font-size:14px;text-align:justify">
+				<center><br>	<br>
+				<img src="assets/user/images/newtesti.png" style="height:180px">
+				<br><br>
+				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+				sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+				sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+				no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+				sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+				At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata 
+				sanctus est Lorem ipsum dolor sit amet.
+
+				
+				<br><br>
+				
+				<span style="Segoe UI semibold"><b>Name of the person</b> </span>
+				<br><br>
+				<img src="assets/user/images/Gif.gif" style="height:210px">
+				 <br><br> <br><br>
+				</center>
+			  </div>
+			 </div>
+		   </div>
+
+
+
+
+
+</div></div>
+
+
+
+<?php
+include ("footer.php");
+?>
