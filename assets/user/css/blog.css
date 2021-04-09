@@ -1,0 +1,43 @@
+
+
+#seltop{
+
+    border:0px solid #388E87;
+padding:100px;
+    background: linear-gradient(180deg, #62C6EB 0%,#7BF94E 100%);
+}
+.but{
+  background: linear-gradient(180deg, #0A62A3 0%,#000a18 100%);
+  color:white; 
+     width:100%;
+     height:100%;
+     border:0px;
+     height:40px;
+margin:5px
+    }
+    .but1{
+      background:white;
+      color:#0A62A3;
+  border-radius:20px;
+padding: 10px 10px;
+
+      width:100%;
+      height:auto;
+      border:0px;
+      border: 1px solid #0A62A3;
+      border-style: dashed;
+      font-size: 14px;margin:5px
+      
+     }
+    @media only screen and (max-width: 900px){
+
+.but{
+  width: 100%;
+
+}
+.but1{
+  width: 100%;
+  height: 40px;
+}
+
+    }

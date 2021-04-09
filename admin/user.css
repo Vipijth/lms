@@ -1,0 +1,420 @@
+#userbg{
+    top:10%;
+        height:700px; 
+        overflow:hidden;
+        z-index:-1;
+        position: relative;
+        background-repeat: no-repeat;
+        background-size: 100% 90%;
+        background-image: url('../images/slider/userbg.png');
+    }
+
+
+    #coursechart{
+
+        background: white;
+        border-radius: 10px;
+        height: auto;
+        box-shadow: 1px 1px 1px 1px #afafaf;
+    }
+
+    #mobhide{
+        height:300px;
+        display: none;
+    }
+
+    #syltab
+    {
+        width:98%; 
+        height:80px; 
+        background-image: url('../images/symsam.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow: hidden;
+    }
+    #syltab:hover{
+
+        background-image: url('../images/symsam.png'); 
+    }
+
+    #sylbut{
+
+        color:#707070;
+        background: transparent;
+        width:99%;
+        height:60px;
+        border:0px;
+    }
+    #topic{
+
+        border-radius: 10px;
+        box-shadow: 1px 1px 1px 1px #afafaf;
+        height:170px;
+
+    }
+
+    #viewcoursebutton{
+        position: absolute;
+        bottom:0;
+        background: #29245D;
+        border-radius: 4px;
+        color: #fafafa;
+        width:100%;
+        font-family: Segoe UI semibold;
+        font-size: 14px;
+        height:40px;
+        text-align: center;
+    }
+
+
+    #coursedt{
+
+        position: absolute;
+        top:0;
+        left:5%;
+        background: #ffffff;
+        border-radius: 4px;
+        color: #666666;
+        width:99%;
+        font-family: Segoe UI semibold;
+        font-size: 16px;
+        height:35px;
+        box-shadow: 1px 1px 1px 1px #afafaf;
+    }
+
+
+    #rqstcert{
+
+        position: absolute;
+        bottom:0;
+        left:10%;
+        border:0px;
+        background:#FD4059;
+        border-radius: 4px;
+        color: #fff;
+        width:80%;
+        font-family: Segoe UI semibold;
+        font-size: 16px;
+        height:30px;
+        box-shadow: 1px 1px 1px 1px #afafaf;
+    }
+
+
+    #graph{
+
+        background: #FFF3BA;
+        box-shadow: 1px 1px 1px 1px #afafaf;
+        border-radius: 10px;
+        height: 170px;
+    }
+
+    #notification{
+
+        
+        box-shadow: 1px 1px 1px 1px #afafaf;
+        border-radius: 10px;
+        height: 500px;
+
+
+    }
+
+    #inbox{
+
+    width:170px;
+    height:170px;
+    background-image: url('../images/inboxbut.png');
+    background-size: 100%;;
+    background-repeat: no-repeat;
+    position: relative;
+    top:-30%;
+    left:-40%;
+
+    }
+
+
+    #sent{
+
+        width:170px;
+        height:170px;
+        background-image: url('../images/sentbut.png');
+        background-size: 100%;;
+        background-repeat: no-repeat;
+        position: relative;
+        bottom: 80%;
+        left:40%;
+    
+        }
+#resumeimg{
+
+    bottom: 10px;
+    right:25%;
+ 
+    width: 280px;
+    height: 200px;
+    position: absolute;
+}
+
+
+#browse{
+    width:90%;
+    height:120px;
+    border-radius: 15px;
+    border:3px solid #EE5B70;
+    color:#EE5B70;
+    font-family: Segoe UI semibold;
+    font-size: 20px;
+    background: white;
+
+}
+#chatbox{
+    height: auto;
+    box-shadow: 1px 1px 1px 1px #AFAFAF;
+    background: #fafafa;
+
+
+}
+
+#chatbox1{
+    background: #fafafa;
+    height: auto;
+    box-shadow: 1px 1px 1px 1px #AFAFAF;
+
+
+}
+
+#chatbox2{
+    height: 300px;
+border: 2px solid #627AF3;
+
+
+}
+
+#newblog{
+
+    background-image: linear-gradient(#E8505B, #9A3840);
+    border: 0px;
+    color: #fff;
+    height:30px;
+    width:100px;
+    font-size: 10px;
+}
+
+#input1{
+    height:50px;
+    width:100%;
+    border-radius: 20px;
+    box-shadow:1px 1px 1px 1px #afafaf;
+    background: #fafafa;
+}
+
+#input2{
+    height:250px;
+    width:100%;
+    border-radius: 20px;
+    box-shadow:1px 1px 1px 1px #afafaf;
+    background: #fafafa;
+}
+#skillstab{
+    background: #fafafa;
+    border-radius: 20px;
+    height:300px;
+    background-image: url('../images/skillbg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+#blogtab{
+    background: #fafafa;
+    border-radius: 20px;
+    height:300px;
+box-shadow: 1px 1px 1px 1px #afafaf;
+}
+
+#explore{
+    width:90%;
+    height:120px;
+    border-radius: 15px;
+    border:3px solid #EE5B70;
+    color:#fff;
+    font-family: Segoe UI semibold;
+    font-size: 20px;
+    background:#EE5B70;
+
+}
+#writeblog{
+    height:30px;
+    width:70%;
+    border-radius: 15px;
+    background: #5183AA;
+    color:white;
+    border:0px;
+    font-family: Segoe UI semibold;
+    text-align: left;
+    font-size: 13px;
+
+}
+#circle{
+
+    width:160px;
+    height:160px;
+    border-radius: 50%;
+    background: #EB4C5E;
+    left:10%;
+}
+    #inboxbut{
+        height:30px;
+        width:80px;
+        background: #FAFAFA;
+        color: #EB4C5E;
+        font-family: Segoe UI semibold;
+        font-size: 10px;
+    }
+#assignment
+{
+  
+    height: 500px;
+
+}
+
+#resume{
+
+    height:500px;
+    background-image: url('../images/resumebody.png');
+    background-repeat: no-repeat;
+background-size: 90%;
+
+}
+
+#file{
+
+    height:100px;
+    width:200px;
+
+}
+
+#uploadbut{
+    height:50px;
+    width:120px;
+    background: #FD4059;
+    color: #FAFAFA;
+    border: 0px;;
+}
+#assignmentin
+{
+    box-shadow: 1px 1px 1px 1px #afafaf;
+    border-radius: 10px;
+    height: 500px;
+
+}
+    #time{
+width:50px;
+height: 50px;
+bottom:12%;
+border-radius: 10px;
+background: white;
+border:1px solid #707070;
+
+color: #E93232;
+font-size: 26px;
+font-family: Segoe UI semibold;
+
+    }
+
+    #time2{
+        right:13px;
+        position: absolute;
+        width:50px;
+        height: 50px;
+        bottom:13%;
+        border-radius: 10px;
+        background: white;
+        border:1px solid #707070;
+  
+        color: #E93232;
+        font-size: 26px;
+        font-family: Segoe UI semibold;
+        
+            }
+
+            #selbox{
+
+                background: #F2F2F2;
+                text-align: center;
+                color:#000000;
+                font-size: 16px;
+                font-family: Segoe UI semibold;
+                text-align: center;
+                text-align-last: center;
+                height:60px;
+            }
+
+            #graphnum{
+            background-color: transparent;
+                width:130px;
+                height:18px;
+                position: absolute;
+                left:3%;
+                border-radius:20px;
+            }
+            #graphnumber{
+                background: rgb(255, 255, 255);
+                width:24px;
+                height:22px;
+                top:-3%;
+                position: absolute;
+                left:-2%;
+                border-radius:35%;
+                color: #FD4059;
+                font-size: 12px;
+                box-shadow: 1px 1px 1px 1px #afafaf;
+
+            }
+
+            #graphfont{
+
+                position:absolute;
+                left:30%;
+                color:#29245D;
+                font-weight:900;
+                font-size:12px;
+                letter-spacing: 3px;
+                font-family: Impact, Charcoal, sans-serif;
+            }
+
+            #userbox{
+                top:180px;
+                right:10%;
+                width:20% ;
+                height:30%;
+                background: transparent;
+                position: absolute;
+            }
+
+            @media only screen and (max-width: 700px){
+
+                #userbg{
+                    height: 340px;
+                }
+                #mobhide{
+                display: grid;
+                }
+
+                #coursechart{
+height: 1200px;
+                }
+
+                #userbox{
+                    top:120px;
+                    right:10%;
+                    width:40% ;
+                    height:40%;
+                    background: transparent;
+                    position: absolute;
+                }
+                #notification{
+height: 800px;
+                }
+                
+
+            }

@@ -1,0 +1,13 @@
+#searchul{
+	list-style:none;
+	display:flex;
+	font-size:11px;
+}
+@media only screen and (max-width:1200px){
+#searchul{
+	list-style:none;
+	display:flex;
+	font-size:7px;
+	
+}	
+}
