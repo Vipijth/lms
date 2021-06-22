@@ -293,7 +293,7 @@ font-family: "summernote";
 
 .note-editor .note-dropzone {
     position: absolute;
-    z-index: 100;
+    z-index: 1;
     display: none;
     color: #87cefa;
     background-color: white;
@@ -393,7 +393,7 @@ font-family: "summernote";
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1050;
+    z-index: 1;
     width: 100%!important
 }
 
@@ -448,7 +448,7 @@ font-family: "summernote";
 
 .note-toolbar {
     position: relative;
-    z-index: 500
+    z-index: 1
 }
 
 .note-popover .popover-content,
@@ -478,7 +478,7 @@ font-family: "summernote";
 .note-popover .popover-content .btn-group .note-table .note-dimension-picker .note-dimension-picker-mousecatcher,
 .card-header.note-toolbar .btn-group .note-table .note-dimension-picker .note-dimension-picker-mousecatcher {
     position: absolute!important;
-    z-index: 3;
+    z-index: 1;
     width: 10em;
     height: 10em;
     cursor: pointer

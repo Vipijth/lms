@@ -31,7 +31,7 @@ else{
 ?>
 <style>
     .accordion {
-        background-color: #0A62A3;
+        background-color: #EB4C5E;
         color: #fff;
         cursor: pointer;
         padding: 18px;
@@ -58,7 +58,7 @@ else{
     }
 
     .active, .accordion:hover {
-        background-color: #0A62A3;
+        background-color: #EB4C5E;
     }
 
     .panel {
@@ -102,7 +102,7 @@ else{
 
                 </div>
                 <div class="col-md-3 col-lg-3" style="height:220px;padding:10px 10px">
-                    <span style="color:#0A62A3;font-size:20px;     font-family:segoe ui semibold">
+                    <span style="color:#FD4059;font-size:20px;     font-family:segoe ui semibold">
 
                <?php echo $title ?>
                 </span>
@@ -111,7 +111,7 @@ else{
                     <span style="color:#707070;font-size:12px; font-family:segoe ui semibold">
                         Start Date :
                     </span>
-                    <span style="color:#0A62A3;font-size:18px;     font-family:segoe ui semibold">
+                    <span style="color:#FD4059;font-size:18px;     font-family:segoe ui semibold">
 
                <?php echo $start ?>
                 </span>
@@ -119,7 +119,7 @@ else{
                     <span style="color:#707070;font-size:12px; font-family:segoe ui semibold">
                        &nbsp; End Date :
                     </span>
-                    <span style="color:#0A62A3;font-size:18px;     font-family:segoe ui semibold">
+                    <span style="color:#FD4059;font-size:18px;     font-family:segoe ui semibold">
 
                <?php echo $end ?>
                 </span>
@@ -182,7 +182,7 @@ else{
 
                         <tr>
                             <td style="padding:10px 10px;text-align:left;color:#707070;font-size:12px;font-family: segoe ui semibold;">
-                                Games & Activity Ideas
+                                Games & Activities
                             </td>
                             <?php $rcsqls2= "SELECT * FROM rc where courseId='$subid' ";
                             $rcresultss2 = $conn->query($rcsqls2);
@@ -208,7 +208,7 @@ else{
 
                         <tr>
                             <td style="padding:10px 10px;text-align:left;color:#707070;font-size:12px;font-family: segoe ui semibold;">
-                                Games & Activity Ideas
+                                Articles
                             </td>
                             <?php $rcsqls3= "SELECT * FROM rc where courseId='$subid' ";
                             $rcresultss3 = $conn->query($rcsqls3);
@@ -236,7 +236,7 @@ else{
 
 				             <div class="col-md-3 col-lg-3" style="height:auto;padding:10px 10px">
 			<?php if($ctype=='course') {  ?>
-                   <form action="userchat.php" method="post"> 
+                   <form action="userchat2.php" method="post"> 
                    <input type="hidden" value="<?php echo $subid ?>" name="rid">
                         <button style=" position:absolute;bottom:3%;right:50%; padding:10px 10px;border:none; background: #0A62A3;color:white;font-family:segoe ui semibold;font-size:12px">
                          Discussions <i class="fa fa-question-circle"></i>
@@ -396,7 +396,7 @@ else{
 	<textarea name="about" maxlength="270" required  style="width: 100%;height: 300px;resize: none; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);border:none;padding:20px 20px" placeholder="Your Comment"><?php echo $row['comment']?></textarea>
 		<br>	<br>
 		
-	<button name="comment" style="background:none;padding:10px 20px;position:absolute;left:20px;width:160px;font-family:segoe ui semibold;background:#0A62A3;color:white;font-size:16px;border:none">Submit</button>
+	<button name="comment" style="background:none;padding:10px 20px;position:absolute;left:20px;width:160px;font-family:segoe ui semibold;background:#FD4E26;color:white;font-size:16px;border:none">Submit</button>
 		</form>
 	
 	</div>
@@ -417,7 +417,7 @@ else{
 	<textarea name="about" required  style="width: 100%;height: 300px;resize: none; box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);border:none;padding:20px 20px" placeholder="Your Comment"><?php echo $row['comment']?></textarea>
 		<br>	<br>
 		
-	<button name="comment" style="background:none;padding:10px 20px;position:absolute;left:20px;width:160px;font-family:segoe ui semibold;background:#0A62A3;color:white;font-size:16px;border:none">Submit</button>
+	<button name="comment" style="background:none;padding:10px 20px;position:absolute;left:20px;width:160px;font-family:segoe ui semibold;background:#FD4E26;color:white;font-size:16px;border:none">Submit</button>
 		</form>
 	
 	</div>

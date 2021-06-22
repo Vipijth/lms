@@ -14,7 +14,10 @@ $tit1 = $_POST['tit1'];
 $tit2= $_POST['tit2'];
 $tit3= $_POST['tit3'];
 
-
+$skill1= $_POST['skill1'];
+$skill2= $_POST['skill2'];
+$skill3= $_POST['skill3'];
+$skill4= $_POST['skill4'];
 $filetype1= $_POST['filetype1'];
 $filetype2= $_POST['filetype2'];
 $filetype3= $_POST['filetype3'];
@@ -224,7 +227,7 @@ if ($uploadOk == 0) {
       
     //echo "The file ". htmlspecialchars( $rand.basename( $_FILES["image"]["name"])). " has been uploaded.";
    // echo $imagename;
-   $sql = "UPDATE resources SET name='$title' ,  category='$category' , amount='$amount' , image='$imagename', about='$about' WHERE id='$xid'";
+   $sql = "UPDATE resources SET name='$title' ,  category='$category' , amount='$amount' , image='$imagename', about='$about',skill1='$skill1', skill2='$skill2' ,skill3 ='$skill3' ,skill4='$skill4' WHERE id='$xid'";
 
    if ($conn->query($sql) === TRUE) {
     header('Location: resource_view.php?name='.$xid);
@@ -241,7 +244,7 @@ if ($uploadOk == 0) {
 
 else{
 
-    $sql = "UPDATE resources SET name='$title' ,  category='$category' , amount='$amount' , about='$about' WHERE id='$xid'";
+    $sql = "UPDATE resources SET name='$title' ,  category='$category' , amount='$amount' , about='$about',skill1='$skill1', skill2='$skill2' ,skill3 ='$skill3' ,skill4='$skill4' WHERE id='$xid'";
 
     if ($conn->query($sql) === TRUE) {
         header('Location: resource_view.php?name='.$xid);

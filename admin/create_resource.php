@@ -284,7 +284,7 @@ foreach($keyword as $x => $val) {
         ("'.$val.'","Resource","'.$title.'")';
         
         if ($conn->query($sql) === TRUE) {
-  header('Location: course_view.php?name='.$last_id);
+  header('Location: resource_view.php?name='.$last_id);
           ?>
 
      <?php 
@@ -300,5 +300,5 @@ foreach($keyword as $x => $val) {
       ?>
       <Script>
       
-           window.location = "resource_view.php?name="+x;
+       //    window.location = "resource_view.php?name="+x;
       </Script>

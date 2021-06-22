@@ -7,245 +7,77 @@
     
     
     body{overflow-x:hidden;
-        
-        width:100% !important;
+        height:auto !important;
+       
     };
 </style>
 
-            <script src="assets/user/js/jssor.slider-28.0.0.min.js" type="text/javascript"></script>
-            <script type="text/javascript">
-               window.jssor_1_slider_init = function() {
+<div class=bg>
+<img src="assets/user/images/slider/close-up-woman-class.jpg" class="img">
 
-                   var jssor_1_SlideoTransitions = [
-                     [{b:-1,d:1,ls:0.5},{b:0,d:1000,y:5,e:{y:6}}],
-                     [{b:-1,d:1,ls:0.5},{b:200,d:1000,y:25,e:{y:6}}],
-                     [{b:-1,d:1,ls:0.5},{b:400,d:1000,y:45,e:{y:6}}],
-                     [{b:-1,d:1,ls:0.5},{b:600,d:1000,y:65,e:{y:6}}],
-                     [{b:-1,d:1,ls:0.5},{b:800,d:1000,y:85,e:{y:6}}],
-                     [{b:-1,d:1,ls:0.5},{b:500,d:1000,y:195,e:{y:6}}],
-                     [{b:0,d:2000,y:30,e:{y:3}}],
-                     [{b:-1,d:1,rY:-15,tZ:100},{b:0,d:1500,y:30,o:1,e:{y:3}}],
-                     [{b:-1,d:1,rY:-15,tZ:-100},{b:0,d:1500,y:100,o:0.8,e:{y:3}}],
-                     [{b:500,d:1500,o:1}],
-                     [{b:0,d:1000,y:380,e:{y:6}}],
-                     [{b:300,d:1000,x:80,e:{x:6}}],
-                     [{b:300,d:1000,x:330,e:{x:6}}],
-                     [{b:-1,d:1,r:-110,sX:5,sY:5},{b:0,d:2000,o:1,r:-20,sX:1,sY:1,e:{o:6,r:6,sX:6,sY:6}}],
-                     [{b:0,d:600,x:150,o:0.5,e:{x:6}}],
-                     [{b:0,d:600,x:1140,o:0.6,e:{x:6}}],
-                     [{b:-1,d:1,sX:5,sY:5},{b:600,d:600,o:1,sX:1,sY:1,e:{sX:3,sY:3}}]
-                   ];
+<img src="assets/user/images/slider/caucasian-boy-studying-home-by-video-conference-because-covid19-homeschooling.jpg " class="img">
 
-                   var jssor_1_options = {
-                     $AutoPlay: 1,
-                     $LazyLoading: 1,
-                     $CaptionSliderOptions: {
-                       $Class: $JssorCaptionSlideo$,
-                       $Transitions: jssor_1_SlideoTransitions
-                     },
-                     $ArrowNavigatorOptions: {
-                       $Class: $JssorArrowNavigator$
-                     },
-                     $BulletNavigatorOptions: {
-                       $Class: $JssorBulletNavigator$,
-                       $SpacingX: 20,
-                       $SpacingY: 20
-                     }
-                   };
-
-                   var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-
-                   /*#region responsive code begin*/
-
-                   var MAX_WIDTH = 3000;
-
-                   function ScaleSlider() {
-                       var containerElement = jssor_1_slider.$Elmt.parentNode;
-                       var containerWidth = containerElement.clientWidth;
-
-                       if (containerWidth) {
-
-                           var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                           jssor_1_slider.$ScaleWidth(expectedWidth);
-                       }
-                       else {
-                           window.setTimeout(ScaleSlider, 30);
-                       }
-                   }
-
-                   ScaleSlider();
-
-                   $Jssor$.$AddEvent(window, "load", ScaleSlider);
-                   $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-                   $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-                   /*#endregion responsive code end*/
-               };
-            </script>
-            <div id="jssor_1" class="slidtop" style="position:relative;margin:0 auto;left:0px;width:1600;height:700px;overflow:hidden;visibility:hidden;"  >
-               <!-- Loading Screen -->
-               <div data-u="slides" id="sldin">
-                   <?php
-                        $slidersql= "SELECT * FROM slider order by  category asc";
-                            $sliderresult = $conn->query($slidersql);
-                            if ($sliderresult->num_rows > 0) {
-
-                                 while($row = $sliderresult->fetch_assoc()) {
-                                    $image=$row['slider'];
-                                     $title=$row['title'];
-                                     $cat=$row['category'];
-                                     $type=$row['type'];
-                                     if($cat=='home1' ){
-                   ?>
-
-                  <div>
-<?php if($type=='image' ){?>
-                     <img style="height:115%;width:100%"data-src="admin/uploads/slider/<?php echo $image; ?>" />
-<?php } ?>
-  <?php if($type=='video' ){?>
-    <video autoplay muted loop   style="width:100%;z-index:-1">
-       <source src="admin/uploads/slider/<?php echo $image; ?>"  class="d-block w-100" type="video/mp4">
-        </video>
-         <?php } ?>
+<img src="assets/user/images/slider/close-up-woman-class.jpg" class="img">
 
 
-                                                 <div data-ts="flat" data-p="540" data-po="40% 50%" style="left:0px;top:0px;width:1600px;height:560px;position:absolute;">
-                        <div data-to="50% 50%" data-ts="preserve-3d" data-t="6" style="left:350px;top:360px;width:900px;height:500px;position:absolute;">
-                           <div data-to="50% 50%" data-t="8" style="filter:url('#jssor_1_flt_1');left:200px;top:0px;width:600px;height:60px;position:absolute;opacity:0;color:#C49D8F;font-family:Roboto Condensed, sans-serif;font-size:48px;line-height:1.2;letter-spacing:0.1em;text-align:center;"></div>
-                           <svg viewbox="0 0 800 100" width="800" height="100" data-t="9" style="left:40px;top:250px;display:block;position:absolute;opacity:0;font-family:'Roboto Condensed',sans-serif;font-size:70px;font-weight:900;letter-spacing:0.5em;overflow:visible;">
-                              <text fill="rgba(255,255,255,0.7)" stroke="#ff9500" text-anchor="middle" x="400" y="100">
-                                  <?php echo $title; ?>
-                              </text>
-                           </svg>
-                        </div>
-                     </div>
-                  </div>
-                                         <?php }?>
+<div class="row justify-content-center sldinfo"  >
+<div class="col-md-3 sliderinfo">
 
-                                     <?php                  if($cat=='home2' ){
-                                         ?>
-
-                                         <div>
-                                             <?php if($type=='image' ){?>
-                                                 <img style="height:115%;width:100%"data-src="admin/uploads/slider/<?php echo $image; ?>" />
-                                             <?php } ?>
-                                             <?php if($type=='video' ){?>
-                                                 <video autoplay muted loop   style="width:100%;z-index:-1">
-                                                     <source src="admin/uploads/slider/<?php echo $image; ?>"  class="d-block w-100" type="video/mp4">
-                                                 </video>
-                                             <?php } ?> <div data-ts="flat" data-p="540" data-po="40% 50%" style="left:0px;top:0px;width:1600px;height:560px;position:absolute;">
-                                                 <div data-to="50% 50%" data-ts="preserve-3d" data-t="6" style="left:350px;top:360px;width:900px;height:500px;position:absolute;">
-                                                     <div data-to="50% 50%" data-t="8" style="filter:url('#jssor_1_flt_1');left:200px;top:0px;width:600px;height:60px;position:absolute;opacity:0;color:#C49D8F;font-family:Roboto Condensed, sans-serif;font-size:48px;line-height:1.2;letter-spacing:0.1em;text-align:center;"></div>
-                                                     <svg viewbox="0 0 800 100" width="800" height="100" data-t="9" style="left:40px;top:250px;display:block;position:absolute;opacity:0;font-family:'Roboto Condensed',sans-serif;font-size:70px;font-weight:900;letter-spacing:0.5em;overflow:visible;">
-                                                         <text fill="rgba(255,255,255,0.7)" stroke="#ff9500" text-anchor="middle" x="400" y="100">
-                                                             <?php echo $title; ?>
-                                                         </text>
-                                                     </svg>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                     <?php }?>
-
-                                     <?php                  if($cat=='home3' ){
-                                         ?>
-
-                                         <div>
-                                             <img style="height:115%;width:100%"data-src="admin/uploads/slider/<?php echo $image; ?>" />
-                                             <div data-ts="flat" data-p="540" data-po="40% 50%" style="left:0px;top:0px;width:1600px;height:560px;position:absolute;">
-                                                 <div data-to="50% 50%" data-ts="preserve-3d" data-t="6" style="left:350px;top:360px;width:900px;height:500px;position:absolute;">
-                                                     <div data-to="50% 50%" data-t="8" style="filter:url('#jssor_1_flt_1');left:200px;top:0px;width:600px;height:60px;position:absolute;opacity:0;color:#C49D8F;font-family:Roboto Condensed, sans-serif;font-size:48px;line-height:1.2;letter-spacing:0.1em;text-align:center;"></div>
-                                                     <svg viewbox="0 0 800 100" width="800" height="100" data-t="9" style="left:40px;top:250px;display:block;position:absolute;opacity:0;font-family:'Roboto Condensed',sans-serif;font-size:70px;font-weight:900;letter-spacing:0.5em;overflow:visible;">
-                                                         <text fill="rgba(255,255,255,0.7)" stroke="#ff9500" text-anchor="middle" x="400" y="100">
-                                                             <?php echo $title; ?>
-                                                         </text>
-                                                     </svg>
-                                                 </div>
-                                             </div>
-                                         </div>
-
-                                     <?php }?>
-
-                                     <?php                  if($cat=='home4' ){
-                                         ?>
-
-                                         <div>
-                                             <img style="height:115%;width:100%"data-src="admin/uploads/slider/<?php echo $image; ?>" />
-                                             <div data-ts="flat" data-p="540" data-po="40% 50%" style="left:0px;top:0px;width:1600px;height:560px;position:absolute;">
-                                                 <div data-to="50% 50%" data-ts="preserve-3d" data-t="6" style="left:350px;top:360px;width:900px;height:500px;position:absolute;">
-                                                     <div data-to="50% 50%" data-t="8" style="filter:url('#jssor_1_flt_1');left:200px;top:0px;width:600px;height:60px;position:absolute;opacity:0;color:#C49D8F;font-family:Roboto Condensed, sans-serif;font-size:48px;line-height:1.2;letter-spacing:0.1em;text-align:center;"></div>
-                                                     <svg viewbox="0 0 800 100" width="800" height="100" data-t="9" style="left:40px;top:250px;display:block;position:absolute;opacity:0;font-family:'Roboto Condensed',sans-serif;font-size:70px;font-weight:900;letter-spacing:0.5em;overflow:visible;">
-                                                         <text fill="rgba(255,255,255,0.7)" stroke="#ff9500" text-anchor="middle" x="400" y="100">
-                                                             <?php echo $title; ?>
-                                                         </text>
-                                                     </svg>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                     <?php }?>
-                                     <?php                  if($cat=='home5' ){
-                                         ?>
-
-                                         <div>
-                                             <img style="height:100%;width:100%"data-src="admin/uploads/slider/<?php echo $image; ?>" />
-                                             <div data-ts="flat" data-p="540" data-po="40% 50%" style="left:0px;top:0px;width:1600px;height:560px;position:absolute;">
-                                                 <div data-to="50% 50%" data-ts="preserve-3d" data-t="6" style="left:350px;top:360px;width:900px;height:500px;position:absolute;">
-                                                     <div data-to="50% 50%" data-t="8" style="filter:url('#jssor_1_flt_1');left:200px;top:0px;width:600px;height:60px;position:absolute;opacity:0;color:#C49D8F;font-family:Roboto Condensed, sans-serif;font-size:48px;line-height:1.2;letter-spacing:0.1em;text-align:center;"></div>
-                                                     <svg viewbox="0 0 800 100" width="800" height="100" data-t="9" style="left:40px;top:250px;display:block;position:absolute;opacity:0;font-family:'Roboto Condensed',sans-serif;font-size:70px;font-weight:900;letter-spacing:0.5em;overflow:visible;">
-                                                         <text fill="rgba(255,255,255,0.7)" stroke="#ff9500" text-anchor="middle" x="400" y="100">
-                                                             <?php echo $title; ?>
-                                                         </text>
-                                                     </svg>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                     <?php }?>
+   <div class="sliderinfolink " >
+    <center> 
+       <a href="#">Online Tution </a>
+    </center>
+       </div>
+</div>
 
 
-                <?php }} ?>
+<div class="col-md-3 sliderinfo">
 
-               <a data-scale="0" href="https://www.jssor.com" style="display:none;position:absolute;">slider html</a>
-               <!-- Bullet Navigator -->
-               <div data-u="navigator" class="jssorb132" style="position:absolute;bottom:24px;right:16px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
-                  <div data-u="prototype" class="i" style="width:12px;height:12px;">
-                     <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                        <circle class="b" cx="8000" cy="8000" r="5800"></circle>
-                     </svg>
-                  </div>
-               </div>
-               <!-- Arrow Navigator -->
 
-            </div>
-         </div>
-      </div>
-      <script type="text/javascript">jssor_1_slider_init();</script>
-      <!-- #endregion Jssor Slider End -->
-      </div>
-      </div>
-      <!--SLIDER END -->
+<div class="sliderinfolink">
+<center> 
+    <a href="#">Learning Solutions </a>
+</center> 
+    </div>
+</div>
 
-<div class="row" id="slidbottom"></div>
+
+<div class="col-md-3 sliderinfo">
+
+<div class="sliderinfolink">
+<center> 
+    <a href="#">Digital Curriculum </a>
+</center> 
+    </div>
+</div>
+</div>
+
+</div>
+
+
+
       <div class="container-fluid">
          <div class="row justify-content-md-center" style="background-color:#EEEAEA;height:auto">
             <div class="col-md-10">
                <font style="font-size: 22px; color:#707070;text-align: justify;font-family: Segoe UI semibold;">
                   <center>
                      <br>
-                     <b>  ABOUT LMS<br><small><i> 
-                     <b> (Mentoring Early Childhood Educators & Teachers) </i>  </b></b></small>
-                     <br>	
-                     <img src="assets/user/images/divider.png" class="img-fluid" alt="" />
+                     <b>  ABOUT LMS<br><small><i> </i>
+                   
+                     <br style="line-height:.8">
+                   Education for all - is our Motto
                      <br><br style="line-height:.8">
                </font>
                <p style="font-size: 18px; color:#707070;font-family: Segoe UI semibold;" class="mainp">
-               Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.
-               </center>
+          
+            </center>
                <br style="line-height:1">
                </p>
 
             </div>
          </div>
          <section name="How It Work">
-            <div class="row justify-content-md-center" style="background:white">
+            <!--<div class="row justify-content-md-center" style="background:white">
                <font style="font-size: 22px; color:#707070;text-align: justify;font-family: Segoe UI semibold;">
                   <center>
                      <br style="line-height:.8">
@@ -255,30 +87,64 @@
                <img src="assets/user/images/divider_2.png" class="img-fluid" alt=""  />
                </center>
                <br>
-            </div>
+            </div>-->
             <br>
-            <div class="row justify-content-md-center" style="background:white">
-               <div class="col-md-10">
-                  <div class="row justify-content-md-center" >
-                     <div class="col-md-3 col-sm-3 col-lg-3" id="work" onclick="location.href='logs.php'">
-                     </div>
-                     <div class="col-md-3 col-sm-3 col-lg-3" id="work1">
-                     </div>
-                     <div class="col-md-3 col-sm-3 col-lg-3" id="work2">
-                     </div>
-                  </div>
-               </div>
+      <div class="row justify-content-md-center hwrk "> 
+
+      <div class="col-md-12 howworksrow"> 
+            <div class="row justify-content-md-center howworksrow ">
+            <div class="col-md-4 howworkscol" style="background-image: url('assets/user/images/slider/bg1.png');">
+               <div class="howworkscolin">
+              
+               <big>      <big>Online Tution</big> </big>  
+               <br>  <br style="line-height: .7;">
+             
+                We provide focussed, flexible and quality solutions for learners, teachers and schools in digital and print forma
+            
+            
+
+
+          </div>
             </div>
+            <div class="col-md-4 howworkscol" style="background-image: url('assets/user/images/slider/school-1782427_1920.jpg');">
+           
+            <div class="howworkscolin">
+              
+              <big>      <big>Learning Solutions</big> </big>  
+              <br>  <br style="line-height: .7;">
+            
+               We provide focussed, flexible and quality solutions for learners, teachers and schools in digital and print forma
+    
+            </div>
+        
+        </div>
+            <div class="col-md-4 howworkscol" style="background-image: url('assets/user/images/slider/bg1.png');">
+        
+            <div class="howworkscolin">
+              
+              <big>      <big>Digital Curriculum</big> </big>  
+              <br>  <br style="line-height: .7;">
+            
+               We provide focussed, flexible and quality solutions for learners, teachers and schools in digital and print forma
+    
+            </div>
+            </div>
+         </div>
+
+    </div>
+	</div>
+
+
          </section>
          <section name="Resource">
             <div class="row justify-content-md-center" style="background:white">
                 <font style="font-size: 22px; color:#707070;text-align: justify;font-family: Segoe UI semibold;">
                     <center>
-                        <br style="line-height:.8">
+                        <br style="line-height:.8">   <br>
                         RESOURCES
                 </font>
                 <br>
-                <img src="assets/user/images/divider_2.png" class="img-fluid" alt=""  />
+          
                 </center>
                <br>
             </div>
@@ -334,7 +200,7 @@
                                    <?php
                                    $ab=strip_tags($about);
 
-                                   echo substr("$ab",0,420).'...'    ?>
+                                   echo substr("$ab",0,330).'...'    ?>
 
                                </p>
 
@@ -353,7 +219,7 @@
                                       // output data of each row
 
                                       ?>
-                                      <i class="fa fa-play" aria-hidden="true" style="color:#0A62A3" ></i>
+                                      <i class="fa fa-play" aria-hidden="true" style="color:#FDA852" ></i>
                                   <?php } ?>
                                   <?php
 
@@ -365,7 +231,7 @@
 
                                       ?>
 
-                                      &nbsp;&nbsp;<i class="fa fa-file" aria-hidden="true" style="color:#0A62A3" ></i>
+                                      &nbsp;&nbsp;<i class="fa fa-file" aria-hidden="true" style="color:#FDA852" ></i>
                                   <?php } ?>
                               </div>
                            </center>
@@ -385,7 +251,7 @@
                   <br><br>
                   <center>
                       <a href="resource.php">
-                      <button style="border: none;width:260px;height:50px; color:white; font-family:segoe ui semibold; background:#0A62A3; font-size:15px; padding:10px 10px">
+                      <button style="border: none;width:260px;height:50px; color:white; font-family:segoe ui semibold; background:#FDA852; font-size:15px; padding:10px 10px">
                           <li class="fa fa-search"></li>
                           Explore Now</button>
                       </a>
@@ -402,7 +268,7 @@
                        COURSES
                 </font>
                 <br>
-                <img src="assets/user/images/divider_2.png" class="img-fluid" alt=""  />
+      
                 </center>
                <br>
             </div>
@@ -519,7 +385,7 @@ $csid=$row['type'];
                               <br style="line-height:.7">
 
                                  <div id="dates">
-                                    <span style="color:#0A62A3">Starts</span><br>
+                                    <span style="color:#FDA852">Starts</span><br>
                                     <span style="color:#707070;font-size:18px;"><?php echo date('d ', $time_input);  ?></span><br>
                                     <span style="color:#707070;font-size:13px;">  <?php echo date('M/Y ', $time_input);  ?></span><br>
                                  </div>
@@ -578,7 +444,7 @@ $csid=$row['type'];
 
 
 
-                      <button style="border: none;width:260px;height:50px; color:white; font-family:segoe ui semibold; background:#0A62A3; font-size:15px; padding:10px 10px">
+                      <button style="border: none;width:260px;height:50px; color:white; font-family:segoe ui semibold; background:#FDA852; font-size:15px; padding:10px 10px">
         <li class="fa fa-search"></li>
                           Explore Now</button>
                      </a>
@@ -842,7 +708,7 @@ $csid=$row['type'];
                         BLOG
                 </font>
                 <br>
-                <img src="assets/user/images/divider_2.png" class="img-fluid" alt=""  />
+    
                 </center>
                <br>	<br>
             </div>

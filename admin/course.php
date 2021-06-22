@@ -41,11 +41,13 @@ $(function(){
 	   function pay(){
 		 if( document.getElementById("category").value=="free"){
 			  document.getElementById("amount").style.display="none";
+			  document.getElementById("spam").style.display="none";
 			  document.getElementById("am").value="0";
 		 }
 		 
 		   if( document.getElementById("category").value=="paid"){
 			  document.getElementById("amount").style.display="flex";
+			  document.getElementById("spam").style.display="flex";
               document.getElementById("am").value="";
 		 }
 		 
@@ -97,12 +99,15 @@ $(function(){
         document.getElementById("dur").style.display='flex';
                 document.getElementById("cdur").style.display='flex';
         document.getElementById("cbox").style.display='flex';
+		document.getElementById("cbt").innerHTML='CREATE COURSE';
     }
 	else{
 	            document.getElementById("cdur").style.display='none';
         document.getElementById("check").checked = false;
         document.getElementById("dur").style.display='none';
         document.getElementById("cbox").style.display='none';
+		document.getElementById("cbt").innerHTML='CREATE MODULE';
+
     }
                }
  
@@ -352,6 +357,24 @@ $(function(){
 							 </div>
 
 
+
+
+							 <div class="form-group row mb-4" id="spam">
+								<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Special Price</label>
+						
+								<div class="col-sm-4 col-md-3">
+									<div class="input-group mb-3"  >
+										<div class="input-group-prepend">
+											<span class="input-group-text" >
+												<i class="fas fa-rupee-sign"></i>
+											</span>
+										</div>
+										<input type="text" value="" name="spamount" required   class="form-control" aria-label="Amount (to the nearest ruppee)">
+									</div>
+								</div>
+							 </div>
+
+
 							 <div class="form-group row mb-4" >
 								 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Add Thumbnail Image</label>
 								         <div class="col-sm-12 col-md-4" >
@@ -514,7 +537,7 @@ $(function(){
 							 <div class="form-group row mb-4">
 								<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
 								<div class="col-sm-12 col-md-7">
-								   <button class="btn btn-primary" name="submit"> CREATE COURSE</button>
+								   <button class="btn btn-primary" name="submit" id="cbt"> CREATE COURSE</button>
 								</div>
 						</form>
 							 </div>

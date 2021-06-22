@@ -249,6 +249,11 @@ textarea:focus{outline :none; border:none;}
 						  <div class="card-header">
 							 <h4>Edit Resource</h4>
 						  </div>
+
+
+
+
+                          
                           <form action="edit_resource.php" method="post" enctype="multipart/form-data">
                           
             <?php   $sq = "SELECT * FROM resources where id='$cid'";
@@ -353,7 +358,21 @@ textarea:focus{outline :none; border:none;}
 								 </div>
 							 </div>
 
-
+                             <div class="form-group row mb-4">
+								 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Edit Skills</label>
+								 <div class="col-sm-12 col-md-2">
+									 <input type="text" name="skill1" value="<?php echo $row['skill1'] ?>"  required class="form-control inputtags">
+								 </div>
+								 <div class="col-sm-12 col-md-2">
+									 <input type="text" name="skill2" value="<?php echo $row['skill2'] ?>"   required class="form-control inputtags">
+								 </div>
+								 <div class="col-sm-12 col-md-2">
+									 <input type="text" name="skill3" value="<?php echo $row['skill3'] ?>"   required class="form-control inputtags">
+								 </div>
+								 <div class="col-sm-12 col-md-2">
+									 <input type="text" name="skill4"  value="<?php echo $row['skill4'] ?>"  required class="form-control inputtags">
+								  </div>
+		        	 		</div>
 
 
 
@@ -388,8 +407,9 @@ textarea:focus{outline :none; border:none;}
 
                                 </div>
                             </div>
-
-
+                        
+							
+                      
                 <div class="form-group row mb-4">
                  <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Add Files</label>
 
@@ -453,7 +473,9 @@ textarea:focus{outline :none; border:none;}
 					
                                                                          
 					<?php
-									  $sql = "SELECT * FROM faculty where verified ='1'";
+                    
+									 $sql = "SELECT * FROM faculty where verified ='1'";
+                                
 										  $result = $conn->query($sql);
 											  if ($result->num_rows > 0) {
 											
@@ -485,7 +507,7 @@ textarea:focus{outline :none; border:none;}
 			 </div>
 
 
-						
+      
 							
 							 <div class="form-group row mb-4">
 								<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>

@@ -9,12 +9,32 @@
 	$id = $_REQUEST['name'];
 	include ("header_1.php");
 
+  if(isset($_POST["delete"])) {
+    $instid = $_POST["instid"];
+    $rcid = $_POST["rcid"];
+    $sql = "delete from instructor  WHERE resourceid='$rcid' and instructorId='$instid'";
+    $conn->query($sql);
+}
+
+if(isset($_POST["deletekey"])) {
+   $instid = $_POST["instid"];
+   $rcid = $_POST["rcid"];
+   $sql = "delete from keyword  WHERE id='$instid'";
+   $conn->query($sql);
+}
+  if(isset($_POST["deletefile"])) {
+    $instid = $_POST["fileid"];
+    $rcid = $_POST["rcid"];
+    $sql = "delete from resources_files where id='$instid'";
+    $conn->query($sql);
+}
+
 ?>
 
 	<!-- Main Content -->
 
             <?php   $sql = "SELECT * FROM resources where id='$id'";
-         
+         $name='';
          $result = $conn->query($sql);
          if ($result->num_rows > 0) {
           // output data of each row
@@ -74,7 +94,7 @@
                                     
                                       
                                        <?php   
-    $sqlzz = "SELECT * FROM instructor where resourceid='$id'";
+    $sqlzz = "SELECT * FROM instructor where resourceid='$id' and type='resource'";
          
          $resultzz = $conn->query($sqlzz);
          if ($resultzz->num_rows > 0) {
@@ -97,6 +117,15 @@
 										   Instructor Name
                                        </span>
 <span class="float-right text-muted">  <?php echo $row["fname"]; ?></span><br>
+<form action="" method="post">
+
+<input type="hidden" value="<?php echo $row["id"]; ?>" name="instid">
+<input type="hidden" value="<?php echo $id ?>" name="rcid">
+<button style="border:none;outline:none;color:blue" onclick="return confirm('Confirm Remove?')" name="delete">
+  Remove Instructor
+</button>
+  </form>
+  <hr/>
                                         <?php }} }}?>
                                        
                                     </p> 
@@ -132,6 +161,40 @@
                                  </ul>
                               </div>
                            </div>
+
+                           <div class="card">
+                              <div class="card-header">
+                                 <h4>Keywords</h4>
+                              </div>
+                              <div class="card-body">
+                                 <ul class="list-unstyled user-progress list-unstyled-border list-unstyled-noborder">
+                                  
+                                 <?php   
+    $sqlzz = "SELECT * FROM keyword where name='$name' and type='Resource'";
+         
+         $resultzz = $conn->query($sqlzz);
+         if ($resultzz->num_rows > 0) {
+          // output data of each row
+          while($row = $resultzz->fetch_assoc())
+           {?>
+                                    <li class="media">
+                                       <div class="media-body">
+                                          <div class="media-title">  <?php echo $row['keyword']; ?></div>
+                                       </div>
+                                    </li>
+                                    <form action="" method="post">
+
+<input type="hidden" value="<?php echo $row["id"]; ?>" name="instid">
+<input type="hidden" value="<?php echo $id ?>" name="rcid">
+<button style="border:none;outline:none;color:blue" onclick="return confirm('Confirm Remove?')" name="deletekey">
+  Remove Keyword
+</button>
+  </form><hr/>
+                             <?php }}  ?>     
+                             
+                                 </ul>
+                              </div>
+                           </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-8">
                            <div class="card">
@@ -158,8 +221,23 @@
 										 if ($resultz->num_rows > 0) {
 										  // output data of each row
 										  while($row = $resultz->fetch_assoc()) {?>
+
+
+
                                           <li>  
-									      <?php echo  $row["filetype"]; ?></li>
+									      <?php echo  $row["filetype"]; ?> -   <a href="uploads/Resources/<?php echo $name; ?>/<?php echo  $row['filetype']; ?> /<?php echo  $row['filename']; ?>" target="_blank"><?php echo  $row["filename"]; ?><a/></li>
+
+               
+
+                          <form action="" method="post">
+
+<input type="hidden" value="<?php echo $row["id"]; ?>" name="fileid">
+<input type="hidden" value="<?php echo $id ?>" name="rcid">
+<button style="border:none;outline:none;color:blue" onclick="return confirm('Confirm Remove File?')" name="deletefile">
+  Remove File
+</button>
+  </form>
+<hr/>
                                         <?php }} ?>
                                        </ul>
 

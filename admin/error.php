@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
       <link rel="stylesheet" href="assets/admin//css/components.css">
       <!-- Custom style CSS -->
       <link rel="stylesheet" href="assets/admin//css/custom.css">
-      <link rel="shortcut icon" type="image/x-icon" href="assets/admin/admin/images/favicon.ico" />
+ 
 
 
    </head>
@@ -70,7 +70,7 @@ if (isset($_POST['submit'])) {
                         <div class="card-header">
 						   <div class="row clearfix">
 							   <div class="col-md-6">
-								   <img src="assets/admin//images/logo/logo@2x.png" class="img-fluid" alt="" /> <br/>
+								   <img src="assets/admin//images/logo/logo.png" class="img-fluid" alt="" /> <br/>
 							   </div>
 							   <div class="col-md-6">
 								   <h4>Login</h4>

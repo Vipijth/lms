@@ -87,7 +87,28 @@ if(isset($_POST["Deletefac"])) {
 
     </script>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap.min.css">
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+<script>
+$(document).ready(function() {
+    $('#examples').DataTable();
+} );
+</script><script>
+$(document).ready(function() {
+    $('#examplez').DataTable();
+} );
+</script>
     <!-- Main Content -->
     <div class="main-content">
         <section class="section">
@@ -174,13 +195,16 @@ if(isset($_POST["Deletefac"])) {
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Users</h4>
+                            <h2>Users</h2><br>
                         </div>
                         <div class="card-body p-0">
                             <form method="post">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <tr>
+                                <div class="table-responsive" >
+
+
+                                    <table class="table table-striped" id="example" style="width:109% !important" >
+                                             <thead>
+											 <tr>
                                             <th class="text-center">
                                                 <div class="custom-checkbox custom-checkbox-table custom-control">
                                                     <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input" id="checkbox-all">
@@ -188,13 +212,15 @@ if(isset($_POST["Deletefac"])) {
                                                 </div>
                                             </th>
                                             <th>Name</th>
-                                            <th>Last Name</th>
+                                        
                                             <th>Email</th>
+											    <th>Last Name</th>
                                             <th>Mobile</th>
                                             <th>Verified</th>
+											<th>Delete</th>
 
                                         </tr>
-
+									</thead>
                                         <?php
                                         $sql = "SELECT * FROM users where usertype='teacher'";
                                         $result = $conn->query($sql);
@@ -263,26 +289,31 @@ if(isset($_POST["Deletefac"])) {
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Faculty</h4>
+                    <h2>Faculty</h2><br>
                 </div>
                 <div class="card-body p-0">
                     <form method="post">
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <tr>
-                                    <th class="text-center">
-                                        <div class="custom-checkbox custom-checkbox-table custom-control">
-                                            <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input" id="checkbox-all">
-                                            <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
-                                        </div>
-                                    </th>
-                                    <th>Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Mobile</th>
-                                    <th>Verified</th>
+                        <div class="table-responsive" style="overflow:hidden">
+                            <table class="table table-striped"  id="examples" style="width:121% !important;">
+                              
+						          <thead>
+											 <tr>
+                                            <th class="text-center">
+                                                <div class="custom-checkbox custom-checkbox-table custom-control">
+                                                    <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input" id="checkbox-all">
+                                                    <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
+                                                </div>
+                                            </th>
+                                            <th>Name</th>
+                                       
+                                            <th>Email</th>
+											     <th>Last Name</th>
+                                            <th>Mobile</th>
+                                            <th>Verified</th>
+											<th>Delete</th>
 
-                                </tr>
+                                        </tr>
+									</thead>
 
                                 <?php
                                 $sql = "SELECT * FROM users where usertype='faculty'";
@@ -345,26 +376,31 @@ if(isset($_POST["Deletefac"])) {
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Schools</h4>
+                    <h2>Schools</h2><br>
                 </div>
                 <div class="card-body p-0">
                     <form method="post">
                         <div class="table-responsive">
-                            <table class="table table-striped">
-                                <tr>
-                                    <th class="text-center">
-                                        <div class="custom-checkbox custom-checkbox-table custom-control">
-                                            <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input" id="checkbox-all">
-                                            <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
-                                        </div>
-                                    </th>
-                                    <th>Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Mobile</th>
-                                    <th>Verified</th>
+                       <table class="table table-striped"  id="examplez" style="width:111% !important;">
+                              
+						          <thead>
+											 <tr>
+                                            <th class="text-center">
+                                                <div class="custom-checkbox custom-checkbox-table custom-control">
+                                                    <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input" id="checkbox-all">
+                                                    <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
+                                                </div>
+                                            </th>
+                                            <th>Name</th>
+                                       
+                                            <th>Email</th>
+											     <th>Last Name</th>
+                                            <th>Mobile</th>
+                                            <th>Verified</th>
+											<th>Delete</th>
 
-                                </tr>
+                                        </tr>
+									</thead>
 
                                 <?php
                                 $sql = "SELECT * FROM users where usertype='school'";
@@ -424,6 +460,37 @@ if(isset($_POST["Deletefac"])) {
     </section>
     </div>
 
-<?php
-include ("footer_2.php");
+
+			<footer class="main-footer">
+               <div class="footer-left">
+                  <a href="5thdt.com">Crafted by 5TH Dimension Technologies</a>
+               </div>
+               <div class="footer-right">
+               </div>
+            </footer>
+         </div>
+      </div>
+      <!-- General JS Scripts -->
+
+      <!-- JS Libraies -->
+	    <script src="assets/admin/js/app.min.js"></script>
+     
+      <script src="assets/admin/bundles/lightgallery/dist/js/lightgallery-all.js"></script>
+      <script src="assets/admin/js/page/light-gallery.js"></script>
+	  <script src="assets/admin/bundles/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+	  <script src="assets/admin/bundles/summernote/summernote-bs4.js"></script>
+	  <script src="assets/admin/bundles/dropzonejs/min/dropzone.min.js"></script>
+	  <script src="assets/admin/js/page/multiple-upload.js"></script>
+	  <script src="assets/admin/js/page/widget-data.js"></script> 
+      <!-- Page Specific JS File -->
+      <script src="assets/admin/js/page/index.js"></script>
+      <!-- Template JS File -->
+      <script src="assets/admin/js/scripts.js"></script>
+      <!-- Custom JS File -->
+	  <script src="assets/admin/js/custom.js"></script>
+	  //<script src="assets/admin/js/resourceval.js"></script>
+	  <script src="assets/admin/bundles/jquery-selectric/jquery.selectric.min.js"></script>
+   </body>
+   
+</html>
 ?>

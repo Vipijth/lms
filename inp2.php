@@ -1,7 +1,17 @@
 <?php
-session_start();
 include ("connection.php");
-	 	
+ini_set('session.gc_maxlifetime', 60);
+@ob_start();
+$sessionTime = 365 * 24 * 60 * 60;
+$sessionName = "useremail";
+
+session_set_cookie_params($sessionTime);
+session_name($sessionName);
+session_start();
+
+if (isset($_COOKIE[$sessionName])) {
+    setcookie($sessionName, $_COOKIE[$sessionName], time() + $sessionTime, "/");
+}	
 	$uid=$_SESSION['userid'];
 $did=$_SESSION['did'];
 	 $mydes= "SELECT * FROM discussionchat where discussionid='$did' order by id desc ";
@@ -28,10 +38,18 @@ $did=$_SESSION['did'];
 		if($row['userid']==$_SESSION['userid']){			
 								?>
 		 
-	 <div class="col-lg-10" style="background: #EBEBEB;text-align:justify;font-family: segoe ui semibold;font-size: 18px;color:#81B456 ;border-bottom: 1px solid #000;padding:10px 0px;margin: 10px" >
+	 <div class="col-lg-10" style="background: #EBEBEB;text-align:justify;font-family: segoe ui semibold;font-size: 18px;color:#81B456 ;border-bottom: 1px solid #000;padding:10px 10px;margin: 10px" >
 
 		 <br><br>
 		<small><?php echo $row['message'] ?> </small>
+
+		<br><br>
+
+		<?php if($row['filename']!=null ||$row['filename']!=''  ){ ?>
+		<a href="admin/uploads/msg/<?php echo $row['filename']?>" target="_blank" style="font-size:12px; color:#000000;position:absolute;bottom:10px;">
+	Attachment <li class="fa fa-paperclip"></li> Download </li>
+	</a>
+	<?php } ?>
 		  <div class="row justify-content-between" style="padding:20px">
 			  	 <p style="font-size:14px;color:#ED0408 ;">
 

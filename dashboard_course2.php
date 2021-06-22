@@ -329,18 +329,23 @@ $(document).bind("contextmenu",function(ev){
 
             <div class="row justify-content-md-center" style="background:white;font-family:Segoe UI regular;font-size:16px;text-align:left;color:#0A62A3;">
                 <div class="col-md-10">
-                    <span style="color:#707070;font-family:Segoe UI semibold;">Instructor</span>
+            
+
+
+                        <?php
+                        $instructorsql= "SELECT * FROM instructor where resourceid='$id' and type='resource'";
+                        $instructorresult = $conn->query($instructorsql);
+                        if ($instructorresult->num_rows > 0) {
+
+                            ?>
+                                    <span style="color:#707070;font-family:Segoe UI semibold;">Meet Faulty</span>
                     <br>	<br>
                     <div class="row" style="background:white;">
 
 
                         <br style="line-height:.8">
-
-
-                        <?php
-                        $instructorsql= "SELECT * FROM instructor where resourceid='$id'";
-                        $instructorresult = $conn->query($instructorsql);
-                        if ($instructorresult->num_rows > 0) {
+                            <?php 
+                        
 
                             while($row = $instructorresult->fetch_assoc()) {
                                 $instid=$row['instructorId'];
@@ -354,15 +359,14 @@ $(document).bind("contextmenu",function(ev){
                                         $fimage=$row['imageName'];
                                         ?>
 
-                                        <div class="col-md-3 col-sm-3 col-lg-3" style="margin:5px;height:150px">
-                                            <div  style="float:left">
-                                                <img src="admin/uploads/faculty/<?php echo $fimage; ?>"  style="height:140px;width:180px">
-                                            </div>
-                                            <div  style="float:right;padding:0%">
-
-                                                <?php echo $fname ?>
-                                            </div>
+                                     <div class="col-md-4 col-sm-4 col-lg-3" style="margin:25px;height:auto;box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+                                        <div  style="float:left">
+                                            <img src="admin/uploads/faculty/<?php echo $fimage; ?>"  style="height:auto;width:100%">
+                                       <br><br>   <?php echo $fname ?> <?php echo $lname ?><br><br>
                                         </div>
+
+                                    </div>          
+                             
                                     <?php }} }}?>
 
 
@@ -393,7 +397,7 @@ $(document).bind("contextmenu",function(ev){
 
 
         <div class="row justify-content-md-center" style="background:white;font-family:Segoe UI regular;font-size:18px;text-align:left;color:#707070;">
-        <div  class="col-md-10">
+        <div  class="col-md-12">
 
        
             <div style="float:left">
@@ -408,11 +412,10 @@ $(document).bind("contextmenu",function(ev){
 
             <br style="line-height:1">
             <hr/ style="border-bottom:2px solid #707070">
-            <br>
-
+           
             <div class="row justify-content-md-center" >
 
-                            <div class="col-md-10 col-sm-10 col-lg-10" id="vdotab" style="padding-top:110px">
+                            <div class="col-md-10 col-sm-10 col-lg-10" id="vdotab" >
                                <?php 
 							   
 							   
@@ -435,7 +438,7 @@ if(isset($_POST["view"])) {
             <br>
 
       
-            <span style="color:#0A62A3;font-family:Segoe UI regular;"></span>
+          
             </div>
             </div>
 
@@ -446,11 +449,11 @@ if(isset($_POST["view"])) {
                     $titles=$row['title'];
 					 $names=$row['name']
                     ?>
-                                      <div  class="col-md-2 col-lg-2 col-sm-2" style="height:190px;margin:20px;box-shadow:0px 1px 1px 1px #E1D6D6;border-bottom: 6px solid #0A62A3 ">
+                                      <div  class="col-md-5 col-lg-5 col-sm-5" style="height:auto;margin:20px;box-shadow:0px 1px 1px 1px #E1D6D6;border-bottom: 6px solid #0A62A3 ">
 <form method="post" action="#vdotab" target="#vdotab"> 
                                  
                                    <button name="view"  style="border:none;background:white">
-                                        <video style="height:150px;width:100%;" autoplay muted  >
+                                        <video style="height:auto;width:100%;" autoplay muted  >
                                             <source id="myVideo" name="myVideo" src="admin/uploads/Resources/<?php echo $names; ?>/video/<?php echo $filename; ?>#t=0,22 ">
                                         </video>
                                    <input type="hidden" value="<?php echo $filename; ?>" name="file">
@@ -493,7 +496,7 @@ if ($rfileresults->num_rows > 0) {
     ?>
 
     <div class="row justify-content-md-center" style="background:white;font-family:Segoe UI regular;font-size:18px;text-align:left;color:#707070;">
-    <div  class="col-md-10">
+    <div  class="col-md-11">
 
 
 
@@ -622,7 +625,7 @@ if ($rfileresultx->num_rows > 0) {
                         ?>
                         <div  class="col-md-2 col-lg-2 col-sm-1" style="height:180px;margin:15px ;box-shadow:0px 1px 1px 1px #E1D6D6;border-bottom: 5px solid #0A62A3">
 
-                            <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                            <a href="admin/uploads/Resources/<?php echo $title; ?>/activity/<?php echo $filename; ?>" target="iframe_a">
                                 <?php if(substr($filename,-3)=='doc' || substr($filename,-4)=='docx'){?>
                                     <center>
                                         <img src="assets/user/images/doc.png"><br>
@@ -631,7 +634,7 @@ if ($rfileresultx->num_rows > 0) {
                                     </center>
                                 <?php }?>
                             </a>
-                            <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                            <a href="admin/uploads/Resources/<?php echo $title; ?>/activity/<?php echo $filename; ?>" target="iframe_a">
                                 <?php if(substr($filename,-3)=='ppt' || substr($filename,-4)=='pptx'){?>
                                     <center>
                                         <img src="assets/user/images/ppt.png"><br>
@@ -640,7 +643,7 @@ if ($rfileresultx->num_rows > 0) {
                                     </center>
                                 <?php }?>
                             </a>
-                            <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                            <a href="admin/uploads/Resources/<?php echo $title; ?>/activity/<?php echo $filename; ?>" target="iframe_a">
                                 <?php if(substr($filename,-3)=='pdf' ){?>
                                     <center>
                                         <img src="assets/user/images/pdf.png"><br>
@@ -649,7 +652,7 @@ if ($rfileresultx->num_rows > 0) {
                                     </center>
                                 <?php }?>
                             </a>
-                            <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                            <a href="admin/uploads/Resources/<?php echo $title; ?>/activity/<?php echo $filename; ?>" target="iframe_a">
                                 <?php if(substr($filename,-3)=='mp3' ){?>
                                     <center>
                                         <img src="assets/user/images/audio.png"><br>
@@ -722,7 +725,7 @@ if ($rfileresultz->num_rows > 0) {
                         ?>
                         <div  class="col-md-2 col-lg-2 col-sm-1" style="height:180px;margin:15px ;box-shadow:0px 1px 1px 1px #E1D6D6;border-bottom: 5px solid #0A62A3">
 
-                            <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                            <a href="admin/uploads/Resources/<?php echo $title; ?>/article/<?php echo $filename; ?>" target="iframe_a">
                                 <?php if(substr($filename,-3)=='doc' || substr($filename,-4)=='docx'){?>
                                     <center>
                                         <img src="assets/user/images/doc.png"><br>
@@ -731,7 +734,7 @@ if ($rfileresultz->num_rows > 0) {
                                     </center>
                                 <?php }?>
                             </a>
-                            <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                            <a href="admin/uploads/Resources/<?php echo $title; ?>/article/<?php echo $filename; ?>" target="iframe_a">
                                 <?php if(substr($filename,-3)=='ppt' || substr($filename,-4)=='pptx'){?>
                                     <center>
                                         <img src="assets/user/images/ppt.png"><br>
@@ -740,7 +743,7 @@ if ($rfileresultz->num_rows > 0) {
                                     </center>
                                 <?php }?>
                             </a>
-                            <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                            <a href="admin/uploads/Resources/<?php echo $title; ?>/article/<?php echo $filename; ?>" target="iframe_a">
                                 <?php if(substr($filename,-3)=='pdf' ){?>
                                     <center>
                                         <img src="assets/user/images/pdf.png"><br>
@@ -749,7 +752,7 @@ if ($rfileresultz->num_rows > 0) {
                                     </center>
                                 <?php }?>
                             </a>
-                            <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                            <a href="admin/uploads/Resources/<?php echo $title; ?>/article/<?php echo $filename; ?>" target="iframe_a">
                                 <?php if(substr($filename,-3)=='mp3' ){?>
                                     <center>
                                         <img src="assets/user/images/audio.png"><br>

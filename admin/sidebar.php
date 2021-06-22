@@ -101,7 +101,7 @@
                      <?php }?>   
                   
                      
-                     <?php if($aemail=='admin@lms.com'){?>
+                     <?php if($aemail=='faridah@chrysaellect.com'){?>
                         <li class="dropdown">
                         <a href="ecert.php" class="menu-toggle nav-link">
 							<i data-feather="feather"></i>
@@ -118,6 +118,13 @@
 						 <a href="users.php" class="menu-toggle nav-link">
                      		<i data-feather="user"></i>
                      		<span>User</span>
+                     	 </a>
+                      </li>
+
+					  <li class="dropdown">
+						 <a href="usercourses.php" class="menu-toggle nav-link">
+                     		<i data-feather="user"></i>
+                     		<span>User & Courses</span>
                      	 </a>
                       </li>
 					       <li class="dropdown">

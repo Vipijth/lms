@@ -535,7 +535,9 @@ UPGRADE TO PAID PLAN
                     $start= date('d/m/Y',$t);
                     $s=strtotime($row['enddate']);
                     $end = date('d/m/Y',$s);
-					  $ends = date('Ymd',$s);  $days=date('Ymd');
+					  $ends = date('Ymd',$s); 
+                      $startx = date('Ymd',$t); 
+                      $days=date('Ymd');
                     $ctype=$row['type'];
                     $cert=$row['certified'];
                ?>
@@ -728,12 +730,17 @@ $r=$ucresultssxs->num_rows +$ucresultssxs->num_rows ;
                                     <i class="fa fa-clock-o"></i>
                                 </button>
                             <?php }} }} ?>
-                <form action="dashboard_course.php" method="post">
-                    <input type="hidden" value="<?php echo $subid ?>" name="rid">
-                    <button style="width: 90%" class="button">
-                        View Course
-                    </button>
-                </form>
+                            <?php if($ctype=='course'  && $days>= $startx) {?>
+                                    <form action="dashboard_course.php" method="post">
+                                        <input type="hidden" value="<?php echo $subid ?>" name="rid">
+                                        <button style="width: 90%" class="button">
+                                            View Course
+                                        </button>
+                                    </form> <?php }else{ ?>
+                                        <button style="width: 90%" class="button">
+                                            Starts on <?php echo date('F d',$t)?>
+                                        </button>
+                                        <?php } ?>
             </div>
 
         </div>
@@ -889,6 +896,7 @@ $r=$ucresultssxs->num_rows +$ucresultssxs->num_rows ;
                             $ctype=$row['type'];
                             $cert=$row['certified'];
                             $hr=$row['hours'];
+                            $startx = date('Ymd',$t); 
 							  $ends = date('Ymd',$s);  $days=date('Ymd');
                             ?>
 
@@ -1080,13 +1088,17 @@ $r=$ucresultssxs->num_rows +$ucresultssxs->num_rows ;
                                                 </button>
                                         <?php }} }} ?>
 
-
+                                        <?php if($ctype=='course'  && $days>= $startx) {?>
                                     <form action="dashboard_course.php" method="post">
                                         <input type="hidden" value="<?php echo $subid ?>" name="rid">
                                         <button style="width: 90%" class="button">
                                             View Course
                                         </button>
-                                    </form>
+                                    </form> <?php }else{ ?>
+                                        <button style="width: 90%" class="button">
+                                            Starts on <?php echo date('F d',$t)?>
+                                        </button>
+                                        <?php } ?>
                                 </div>
 
                             </div>

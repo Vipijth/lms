@@ -29,7 +29,7 @@ if(isset($_POST["startdesc"])) {
 	$time=$_POST['datetime'];
 	$utype=$_SESSION['utype'];
 	$question=$conn->real_escape_string($_POST['question']);
-		$tit=$_POST['tit'];
+		$tit=$conn->real_escape_string($_POST['tit']);
 	try{
 		    $sql = 'INSERT INTO discussion(course, courseid,username,userid,startdate,utype,topic,title ) VALUES 
    ("'.$coursename.'","'.$courseid.'","'.$username.'","'.$userid.'","'.$time.'","'.$utype.'","'.$question.'","'.$tit.'")';
@@ -158,7 +158,7 @@ View Dashboard
 </table>
 </center>';
         $mail->Body = $body;
-		$mail->Send();
+//$mail->Send();
 	}}}}
 		
 		
@@ -248,7 +248,7 @@ View Dashboard
 </table>
 </center>';
         $mail->Body = $body;
-		$mail->Send();
+		//$mail->Send();
 	}}}}
 			   
 			   
@@ -426,7 +426,7 @@ View Dashboard
 </table>
 </center>';
         $mail->Body = $body;
-		$mail->Send();
+		//$mail->Send();
 	}}
 		
 		
@@ -443,6 +443,12 @@ alert('Question Updated successfully');
 }
 }
 ?>
+
+
+
+
+<link rel="stylesheet" href="admin/assets/admin/bundles/summernote/summernote-bs4.css">
+
 <style>
     body{
         -webkit-user-select: text;
@@ -694,10 +700,12 @@ alert('Question Updated successfully');
 	<div class="col-lg-8"  >
 		<form action="" method="post">
 			<div style="background:red;margin:20px" >
-				<input type="text" placeholder="Enter Title Here..." name="tit" style="border-bottom:1px solid #eaeaea;padding:10px 20px;width:96.6%;background:white;position: absolute;left:-2.9px" maxlength="100"> </div>
+				<input type="text" placeholder=" Title" minlength="12" required name="tit" style="border:1px solid #707070 !important ;padding:10px 20px;width:96.6%;background:white;position: absolute;left:-2.9px" maxlength="100"> </div>
 			
-			<br><br>
-					<textarea required rows="10" placeholder="Type Your Question Here..." style="width:100%;  resize: none;border:none;padding:10px 20px" maxlength="600" name="question"></textarea>
+			<br><br><br>
+            
+
+<textarea  id="about" name="question" maxlength="3000"  required class="summernote"  ></textarea>
 
 	
 			<br>	<br>	
@@ -742,7 +750,7 @@ $date1 =  date("H:i a");
 								?></div>
 	 	 <div class="row  justify-content-center">
 	 	   <div class="col-lg-9" style="text-align:justify;font-family: segoe ui semibold;font-size: 17px;color:#0A62A3;padding:40px 0px" >
-	  My Questions  <li class="fa fa-comments"></li>
+	  My Comments  <li class="fa fa-comments"></li>
 	 </div>	 
 	 
 	 
@@ -755,7 +763,8 @@ $date1 =  date("H:i a");
 	 
 	 
 	 <div class="col-lg-9" style="text-align:justify;font-family: segoe ui semibold;font-size: 20px;color:#707070; der-bottom: 1px dotted #E000FF;background: white;padding: 20px 20px;margin: 10px" ><?php echo $row['title'] ?>
-		 <br><br>
+		
+         <br><br>
 		<small><?php echo $row['topic'] ?> </small>
 		  <form action="group_discussion.php" method="post">
 		  <div class="row justify-content-between" style="padding:20px">
@@ -871,7 +880,9 @@ $date1 =  date("H:i a");
 
 
 </div>
-
+<script src="admin/assets/admin/js/app.min.js"></script>
+<script src="admin/assets/admin/bundles/summernote/summernote-bs4.js"></script>
+<script src="admin/assets/admin/js/scripts.js"></script>
 <script>
     var acc = document.getElementsByClassName("accordion");
     var i;
@@ -888,7 +899,9 @@ $date1 =  date("H:i a");
         });
     }
 </script>
-
+<script src="admin/assets/admin/js/app.min.js"></script>
+<script src="admin/assets/admin/bundles/summernote/summernote-bs4.js"></script>
+<script src="admin/assets/admin/js/scripts.js"></script>
 <?php
 include ("footer.php");
 ?>

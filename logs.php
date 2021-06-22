@@ -46,6 +46,7 @@ $sqlpost="select * from users where email like '$postmail' ;";
                      $_SESSION["useremail"] = $row["email"];
                      $_SESSION["userid"] = $row["id"];
                      $_SESSION["utype"] = 'teacher';
+                      $_SESSION["eca"] = $row["eca"];
                      $_SESSION["lastlog"] =   $lastlog;
 					$_SESSION["username"] =  ucfirst($row['firstname']).' '.ucfirst($row['lastname']);
                       $url=$_SESSION['url'];
@@ -56,7 +57,7 @@ $sqlpost="select * from users where email like '$postmail' ;";
                 header('Location: '.$url);
           }else{     
 
-                     header('Location: dashboard.php');
+                     header('Location: dashboard.html');
                  }
                  }
                   if($row["usertype"]=='faculty'){
@@ -74,7 +75,7 @@ $sqlpost="select * from users where email like '$postmail' ;";
                 header('Location: '.$url);
           }else{     
 
-                  header('Location: facdash.php');
+                  header('Location: facdash.html');
                  }
                   }
                   if($row["usertype"]=='school'){
@@ -112,6 +113,7 @@ if(isset($_POST["subm"])) {
     $lname = $_POST["lname"];
     $mob = $_POST["mob"];
     $password = $_POST["password"];
+     $eca = $_POST["eca"];
     $type = $_POST["topic"];
 
     $sqlu = "SELECT * FROM users where email like '$email'";
@@ -130,33 +132,33 @@ if(isset($_POST["subm"])) {
         $mail->IsSMTP();                              //Sets Mailer to send message using SMTP
         $mail->Mailer = "smtp";
         //$mail->SMTPDebug = 2;
-        $mail->Host = 'mail.LMS.com';        //Sets the SMTP hosts of your Email hosting, this for Godaddy
+        $mail->Host = 'mail.chrysaellect.com';        //Sets the SMTP hosts of your Email hosting, this for Godaddy
         $mail->Port = 465;                            //Sets the default SMTP server port
       //  $mail->SMTPAutoTLS = false;
         $mail->SMTPSecure = 'ssl';
         $mail->SMTPAuth = true;                            //Sets SMTP authentication. Utilizes the Username and Password variables
-        $mail->Username = '_mainaccount@LMS.com';                    //Sets SMTP username
+        $mail->Username = '_mainaccount@chrysaellect.com';                    //Sets SMTP username
         $mail->Password = 'Faridah@2021';                    //Sets SMTP password
         //Sets connection prefix. Options are "", "ssl" or "tls"
-        $mail->From = '_mainaccount@LMS.com';                        //Sets the From email address for the message
-        $mail->FromName = 'LMS Meet';
+        $mail->From = '_mainaccount@chrysaellect.com';                        //Sets the From email address for the message
+        $mail->FromName = 'Chrysaellect Meet';
         $admail=$_POST["email"];
         $mail->AddAddress($admail);        //Adds a "To" address
 
         $mail->IsHTML(true);                            //Sets message type to HTML
-        $mail->Subject = 'Welcome To LMS Meet';
+        $mail->Subject = 'Welcome To Chrysaellect Meet';
         //Sets the Subject of the message
         $body = '<center>
 <table style="width:90%;background:white;height:400px;">
 <tr>
 <td>
 <center>
-<img src="http://meet.LMS.com/assets/user/images/logo/logo3.png">
+<img src="http://meet.chrysaellect.com/assets/user/images/logo/logo3.png">
 </center>
 <table style="width:100%;background:white;height:100px;background:#E8E8E8;color:#707070;font-family:segoe ui regular;font-size:17px;text-align:justify">
 <tr>
 <td>
- LMS M.E.E.T is Asia’s first upskilling and learning platform for teachers, educators, parents and edupreneurs who wish to hone their skills and understanding
+ Chrysaellect M.E.E.T is Asia’s first upskilling and learning platform for teachers, educators, parents and edupreneurs who wish to hone their skills and understanding
                about concepts, theories and pedagogies related to early childhood education.  We bring to you the best faculty from across the globe, 
                each having a specialization in an area connected to early learning.
 </table>
@@ -168,7 +170,7 @@ Congratulations,
 '.$_POST['name'].'
  </b>
  <br>
-<br>Welcome To LMS MEET<br><br>
+<br>Welcome To Chrysaellect MEET<br><br>
 <small><small>
 Thankyou for joining our community and trusting us.
 </small></small>
@@ -183,7 +185,7 @@ Your Verification Code
 </table>
 <br>
 <r>
-<a href="http://meet.LMS.com/privacy.php" target="_blank" style="color:#6C5634;font-family:segoe ui semiblod;text-decoration:none"> Terms & Conditions</a>
+<a href="http://meet.chrysaellect.com/privacy.php" target="_blank" style="color:#6C5634;font-family:segoe ui semiblod;text-decoration:none"> Terms & Conditions</a>
 </center>
 </table>
 </center>';
@@ -191,8 +193,8 @@ Your Verification Code
 if($type=='teacher'){ 
         if ($mail->Send())                                //Send an Email. Return true on success or false on error
         {
-            $sql = 'INSERT INTO users(firstname, lastname,email, mob,usertype,password,code ) VALUES 
-   ("' . $name . '","' . $lname . '","' . $email . '","' . $mob . '","' . $type . '","' . $password . '", "' . $rand . '")';
+            $sql = 'INSERT INTO users(firstname, lastname,email, mob,usertype,password,code,eca ) VALUES 
+   ("' . $name . '","' . $lname . '","' . $email . '","' . $mob . '","' . $type . '","' . $password . '", "' . $rand . '", "' . $eca . '")';
 
             if ($conn->query($sql) === TRUE) {
 
@@ -219,35 +221,35 @@ if($type=='teacher'){
         $mails->IsSMTP();                              //Sets Mailer to send message using SMTP
         $mails->Mailer = "smtp";
         //$mail->SMTPDebug = 2;
-        $mails->Host = 'mail.LMS.com';        //Sets the SMTP hosts of your Email hosting, this for Godaddy
+        $mails->Host = 'mail.chrysaellect.com';        //Sets the SMTP hosts of your Email hosting, this for Godaddy
         $mails->Port = 465;                            //Sets the default SMTP server port
       //  $mail->SMTPAutoTLS = false;
         $mails->SMTPSecure = 'ssl';
         $mails->SMTPAuth = true;                            //Sets SMTP authentication. Utilizes the Username and Password variables
-        $mails->Username = '_mainaccount@LMS.com';                    //Sets SMTP username
+        $mails->Username = '_mainaccount@chrysaellect.com';                    //Sets SMTP username
         $mails->Password = 'Faridah@2021';                    //Sets SMTP password
         //Sets connection prefix. Options are "", "ssl" or "tls"
-        $mails->From = '_mainaccount@LMS.com';                        //Sets the From email address for the message
-        $mails->FromName = 'LMS Meet';
+        $mails->From = '_mainaccount@chrysaellect.com';                        //Sets the From email address for the message
+        $mails->FromName = 'Chrysaellect Meet';
             //Adds a "To" address
 
         $mails->IsHTML(true);                            //Sets message type to HTML
-        $mails->Subject = 'Welcome To LMS Meet';
+        $mails->Subject = 'Welcome To Chrysaellect Meet';
 			
-			       $admail='info@LMS.com';
+			       $admail='info@chrysaellect.com';
 				    $mails->AddAddress($admail); 
-				$mails->Subject = 'New Registration On LMS Meet';
+				$mails->Subject = 'New Registration On Chrysaellect Meet';
 				 $mails->Body =  '<center>
 <table style="width:90%;background:white;height:400px;">
 <tr>
 <td>
 <center>
-<img src="http://meet.LMS.com/assets/user/images/logo/logo3.png">
+<img src="http://meet.chrysaellect.com/assets/user/images/logo/logo3.png">
 </center>
 <table style="width:100%;background:white;height:100px;background:#E8E8E8;color:#707070;font-family:segoe ui regular;font-size:17px;text-align:justify">
 <tr>
 <td>
- LMS M.E.E.T is Asia’s first upskilling and learning platform for teachers, educators, parents and edupreneurs who wish to hone their skills and understanding
+ Chrysaellect M.E.E.T is Asia’s first upskilling and learning platform for teachers, educators, parents and edupreneurs who wish to hone their skills and understanding
                about concepts, theories and pedagogies related to early childhood education.  We bring to you the best faculty from across the globe, 
                each having a specialization in an area connected to early learning.
 </table>
@@ -256,12 +258,12 @@ if($type=='teacher'){
 <font style="color:#6C5634;font-family:segoe ui regular;font-size:22px">
 New Registration,<br><br>
 <b>
-A new '.$type.' has been registered on LMS Meet.
+A new '.$type.' has been registered on Chrysaellect Meet.
  </b>
  <br>
 
 <small><small>
-Thankyou for joining our community and trusting us.
+
 </small></small>
 <br>
 
@@ -270,7 +272,7 @@ Thankyou for joining our community and trusting us.
 <table style="width:100%;color:white;height:50px;background:#F16062;font-family:segoe ui semibold;font-size:19px;text-align:center">
 <tr>
 <td style="border-right:2px solid white">
-<a href="http://meet.LMS.com/admin" target="_blank" style="color:#fff;font-family:segoe ui regular;text-decoration:none">
+<a href="http://meet.chrysaellect.com/admin" target="_blank" style="color:#fff;font-family:segoe ui regular;text-decoration:none">
 View Dashboard
 <a>
 </td>
@@ -279,7 +281,7 @@ View Dashboard
 </table>
 <br>
 
-<a href="http://meet.LMS.com/privacy.php" target="_blank" style="color:#6C5634;font-family:segoe ui semiblod;text-decoration:none"> Terms & Conditions</a>
+<a href="http://meet.chrysaellect.com/privacy.php" target="_blank" style="color:#6C5634;font-family:segoe ui semiblod;text-decoration:none"> Terms & Conditions</a>
 </center>
 </table>
 </center>' ;
@@ -320,7 +322,7 @@ echo "
         color:#fff;
         width:90%;
         height:45px;
-        background: #0A62A3;
+        background: #EB4C5E;
         border-radius: 15px;
         border: 0px solid #F8ADB6;
         font-family: segoe ui regular;
@@ -341,7 +343,7 @@ echo "
     {
       var x=document.getElementById("topic").value;
      if(x!='0'){
-         document.getElementById("topic").style.border="1px solid #0A62A3";
+         document.getElementById("topic").style.border="1px solid #EB4C5E";
          document.getElementById("name").style.display="block";
          document.getElementById("lname").style.display="block";
          document.getElementById("tel").style.display="block";
@@ -351,7 +353,7 @@ echo "
      }
 
         if(x=='school'){
-            document.getElementById("topic").style.border="1px solid #0A62A3";
+            document.getElementById("topic").style.border="1px solid #EB4C5E";
             document.getElementById("name").style.display="block";
          document.getElementById("lname").style.display="none";
             document.getElementById("tel").style.display="block";
@@ -368,6 +370,23 @@ echo "
             document.getElementById("password").style.display="none";
  document.getElementById("cpassword").style.display="none";
         }
+                if(x=='teacher'){
+          document.getElementById("code").style.display="block";
+      }
+      if(x!='teacher'){
+          document.getElementById("code").style.display="none";
+      }
+    }
+    
+        function check(){
+      document.getElementById("check").style.display="none";
+      document.getElementById("check2").style.display="inline";
+      document.getElementById("code2").style.display="block";
+    }
+    function check2(){
+      document.getElementById("check").style.display="inline";
+      document.getElementById("check2").style.display="none";
+      document.getElementById("code2").style.display="none";
     }
 	
 	function cp(){
@@ -378,14 +397,29 @@ echo "
 			document.getElementById("cpassword").value='';
 		}
 	}
+	
+	  /*function codefy(){
+
+    var y=document.getElementById("codein").value;
+    if(y=='ECA2021'){
+      document.getElementById("codeverify").innerHTML="Verified";
+      document.getElementById("codein").disabled=true;
+      document.getElementById("codeverify").disabled=true;
+      document.getElementById("check2").style.display="none";
+      document.getElementById("check3").style.display="inline";
+      document.getElementById("eca").value='1';
+    }else{
+      document.getElementById("codeverify").innerHTML="try again!";
+    }
+  }*/
 </script>
   <link rel="stylesheet" href="assets/user/css/log.css">
 
 
 <!-- partial:index.partial.html -->
 
-<div class="container-fluid" style="padding-top: 80px">
-  <div class="frame" style="background:#0A62A3 !important;height:580px !important;width:360px !important">
+<div class="container-fluid" style="padding-top: 120px">
+  <div class="frame" style="background:#EB4C5E !important;height:690px !important;width:360px !important">
     <div class="nav">
       <ul class"links">	
         <li class="signin-active li"><a class="btn" style="color:white;border-bottom:0px solid white"> Log in</a></li>
@@ -402,7 +436,7 @@ echo "
    
       
           <div class="btn-animate" style="background: transparent;color:white !important;width:300px">
-            <button class="btn-signin" style="color:#0A62A3;width:290px " name="submit"><b>Log in</b></button>
+            <button class="btn-signin" style="color:#EB4C5E;width:290px " name="submit"><b>Log in</b></button>
           </div>
 				        </form>
         
@@ -411,7 +445,7 @@ echo "
 			<select id="topic" name="topic" onChange="verify()" style="position:absolute;left:6%;width:80%">
                                             <option value="0"> Select an option </option>
                                            <option value="teacher"> Teacher / Parent / Educator</option>
-                                           <option value="faculty"> Faculty</option>
+                                           <option value="faculty"> MEET Faculty</option>
                                            <option value="school"> School</option>
                                            </select>				
 			<br>		<br>				
@@ -430,7 +464,24 @@ echo "
           <input class="form-styling" type="password" required name="password" id="password" placeholder="Password"  style="display:none;width:300px" />
         <br style="line-height: .4">
           <input class="form-styling" type="password" required name="confirmpassword" placeholder="Confirm Password" id="cpassword" style="display:none;width:300px" onchange="cp()"/>
-          <center><button  class="btn-signup" style="background:white;color:#0A62A3;width:200px;position:absolute;left:19%" name="subm">Sign Up</button> </center>
+          
+           <div id="code" style="display: none;">
+          
+          <br style="line-height: .6">
+          &nbsp;&nbsp;     Check this box if you are a ECA member    &nbsp;&nbsp;
+          <i class="fa fa-square-o fa-1x" aria-hidden="true" id="check" onclick="check()" ></i>
+          <i class="fa fa-check-square-o fa-1x" aria-hidden="true" id="check2" onclick="check2()" style="display: none;"></i>
+          <i class="fa fa-check-square-o fa-1x" aria-hidden="true" id="check3" style="display: none;"></i>
+         
+          
+          <div id="code2" style="display: none;">
+          <br style="line-height: .4">
+          &nbsp;&nbsp;<b> Code : </b><input type="text"  id="codein" style="width: 120px;border-radius:20px;color:#212">
+          <button type="button" id="codeverify"  style="width: 90px;height:30px;color:white; font-family:segoe ui semibold;border-radius:20px;color:#212;border:none;background:gold"> Verify</button>
+          </div>        </div>
+          
+<input type="hidden" value="0" id="eca" name="eca">
+          <center><button  class="btn-signup" style="background:white;color:#EB4C5E;width:200px;position:absolute;left:19%" name="subm">Sign Up</button> </center>
 				        </form>
       
         

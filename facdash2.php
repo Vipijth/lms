@@ -2,7 +2,7 @@
 include("header.php");
 include ("connection.php");
 $subid= $_POST['cid'];
-$subname= $_POST['cname'];
+$subname= $_POST['cname'];  $cn=0; 
 if(isset($_POST["assess"])) {
     $subid= $_POST['cid'];
     $title = $_POST['title'];
@@ -333,6 +333,47 @@ alert('New Assessment created successfully');
                                 </div>
                             <?php } } ?>
                     </div>
+
+
+                    <br><br>
+                  <font style="font-family:segoe ui regular;font-size:29px;color:#707070">
+                 Resources
+                  </font>
+                    <br>
+                    <hr/>
+                    <br><br>
+                    <div class="row justify-content-md-start">
+
+                    <?php
+                    $rcsql= "SELECT * FROM rc where courseId='$subid'";
+                    $rcresult = $conn->query($rcsql);
+                    if ($rcresult->num_rows > 0) {
+
+                        while($row = $rcresult->fetch_assoc()) {
+                            $resid=$row['resourceId'];
+                            $recsql= "SELECT * FROM resources where id='$resid'";
+                            $recresult = $conn->query($recsql);
+                            if ($recresult->num_rows > 0) {
+
+                                while($row = $recresult->fetch_assoc()) {
+                                    $rname=$row['name'];
+                                    $recid=$row['id'];
+
+                                    ?>
+
+                                    <div class="col-md-2" style="height:60px;margin:20px;">
+                                        <form action="facdashboard_course.php" method="post">
+                                            <input type="hidden" name="rcid" value="<?php echo $recid ?>">
+                                            <input type="hidden" name="rid" value="<?php echo $subid ?>">
+                                            <button style="height:60px;width:100%;font-family:Segoe UI semibold;font-size:12px;color:#707070;border:1px solid #707070 ">
+                                                <?php echo $rname ?>
+                                            </button>
+
+                                        </form>
+                                    </div>
+                                <?php }} }}?>
+
+                </div>
                 </div>
             </div>
         </div>
@@ -342,9 +383,16 @@ alert('New Assessment created successfully');
         <div class="row justify-content-center">
 
             <div class="col-md-12">
+            <form action="userchat.php" method="post"> 
+                   <input type="hidden" value="<?php echo $subid ?>" name="rid">
                 <button class="accordion">Discussion</button>
+            </form>
                 <div class="panel">
  <div class="row justify-content-center" style="background: #eaeaea;padding-top:40px;height:auto">
+
+
+
+ 
 	<!--
 	<div class="col-lg-8"  >
 		<form action="" method="post">
@@ -386,60 +434,7 @@ $date1 =  date("H:i a");
 </div>-->
 	 
 	 <br>
-	 	 <?php 
-	$uid=$_SESSION['userid'];
-	 $mydes= "SELECT * FROM discussion where courseid='$subid' and userid!='$uid'  order by id desc ";
-                            $desres = $conn->query($mydes);
-                            if ($desres->num_rows > 0) {?>
-	 
-	 
-	 <div class="row  justify-content-center" style="background:#eaeaea ">
-	 	   <div class="col-lg-9" style="text-align:justify;font-family: segoe ui semibold;font-size: 17px;color:#000;padding:40px 0px" >
-	   Discussions On <?php echo $title ?>  <li class="fa fa-comments"></li>
-	 </div>
-	 
-	 
-	 
-	 
-	 
-		 
-	 <?php 
-	
-                         
-                            while($row = $desres->fetch_assoc()) {
-	
-	
-	?>
-	 
-	 	 <div class="col-lg-9" style="text-align:justify;font-family: segoe ui semibold;font-size: 18px;color:#707070; border-bottom: 1px dotted #000;padding: 20px 20px;margin: 10px" >
-		 <?php echo $row['topic'] ?>
-			 	  <form action="group_discussion.php" method="post">
-		  <div class="row justify-content-between" style="padding:20px">
-			  	 <p style="font-size:14px;color:#ED0408 ;">
-	     <i> <?php echo $row['course'] ?></i>
-					 <br>
-					  
-						 
-						 <input type="hidden" value="<?php echo $subid ?>"  name="rid">
-					  	 <input type="hidden" value="<?php echo $row['id'] ?>"  name="did">
-					 <button href="group_discussion.php" style="background: none;color:blue;border:none;">
-						 View Discussion <li class="fa fa-comments"></li>
-					 </button>
-						
-		 </p>
-		 <p style="font-size:14px;color:#707070;font-family: segoe ui regular">
-			 <?php echo $row['username'] ?><br>
-		<?php echo $row['startdate'] ?>
-		 </p>
-		 </div>
-			 </form>
-
-	 </div>
-	 	 <?php 
-	
-			   }}
-	
-	?>
+   
 	 
 	 
 	 
@@ -454,7 +449,84 @@ $date1 =  date("H:i a");
                 </div>
             </div>
         </div>
+        <br>
+        
+        
+        <div class="row justify-content-center">
+        <div class="col-md-12">
+     
+        <button class="accordion" >Students List</button>
+        
+        <div class="panel">    <br>    <br>
 
+        <div class="row  justify-content-center">
+        <div class="col-md-9">
+        <table class="table" >
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name Name</th>
+  
+      <th scope="col">Last Name</th>
+      <th scope="col">Email Id</th>
+    </tr>
+  </thead>
+  <tbody>
+ 
+  <?php
+             
+                $rcsqal= "SELECT * FROM oc where  status='1' and courseid like '%$subid'";
+                $rcresulta = $conn->query($rcsqal);
+                if ($rcresulta->num_rows > 0) {
+
+                   
+                    while($row = $rcresulta->fetch_assoc()) {
+                        
+                        $uzzid=$row['useremail'];
+                $rcsqald= "SELECT * FROM users where email like '$uzzid'";
+                    $rcresultad = $conn->query($rcsqald);
+                    if ($rcresultad->num_rows > 0) {
+
+                        
+                        while($row = $rcresultad->fetch_assoc()) {
+                            $cn=$cn+1; ?>
+    <tr >
+      <th scope="row"><?php echo $cn ?></th>
+      <td style="color:#707070 !important;text-align:left"><?php echo $row['firstname']?></td>
+      <td style="color:#707070 !important;text-align:left"><?php echo $row['lastname']?></td>
+      <td style="color:#707070 !important;text-align:left"><?php echo $row['email']?></td>
+    </tr>
+  <?php }}}} ?>
+
+  <?php
+                
+                
+                $rcsqalz= "SELECT * FROM user_courses where subid like '%$subid' and type='course' ";
+                $rcresultaz = $conn->query($rcsqalz);
+                if ($rcresultaz->num_rows > 0) {
+
+                  
+                    while($row = $rcresultaz->fetch_assoc()) {
+                        $uzid =$row['userid'];
+                       
+                $rcsqalx= "SELECT * FROM users where id=$uzid";
+                    $rcresultax = $conn->query($rcsqalx);
+                    if ($rcresultax->num_rows > 0) {
+
+                        while($row = $rcresultax->fetch_assoc()) {$cn=$cn+1; ?>
+    <tr >
+      <th scope="row"><?php echo $cn ?></th>
+      <td style="color:#707070 !important;text-align:left"><?php echo $row['firstname']?></td>
+      <td style="color:#707070 !important;text-align:left"><?php echo $row['lastname']?></td>
+      <td style="color:#707070 !important;text-align:left"><?php echo $row['email']?></td>
+    </tr>
+  <?php }}}} ?>
+  </tbody>
+</table>
+</div></div>
+        </div>
+        </div>
+        </div>
         <br>
         <div class="row justify-content-center">
 

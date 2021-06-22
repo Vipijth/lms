@@ -204,7 +204,7 @@ $count=0;
 
 
                    
-                   $coursesql= "SELECT * FROM course where DATE(startdate) > CURDATE() and  DATE(enddate) > CURDATE() and type='course' order by id desc ";
+                   $coursesql= "SELECT * FROM course where DATE(startdate) >= CURDATE() and  DATE(enddate) > CURDATE() and type='course' order by id desc ";
 				  
                    $courseresult = $conn->query($coursesql);
                    if ($courseresult->num_rows > 0) {

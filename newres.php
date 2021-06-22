@@ -332,7 +332,7 @@ $(document).bind("contextmenu",function(ev){
 
         <h3><?php echo $about ?></h3>
     </section>
-    <section class="et-slide" id="tab-flexbox" style="text-align: left !important;">
+    <section class="et-slide" id="tab-flexbox" style="text-align: left !important;height:500px !important;overflow:hidden">
         <br><br><br>   <br><br>  
 <div style="width: 100% !important;float: left !important;text-transform:capitalize">
     <h1><small><small><small>Skills You Gain From <?php echo $title ?></small></small></small></h1><br>
@@ -354,7 +354,7 @@ $(document).bind("contextmenu",function(ev){
             if ($instructorresult->num_rows > 0) {
            
        ?>
-    <section class="et-slide" id="tab-react">
+    <section class="et-slide" id="tab-react" style="background:red !important;height:500px !important;overflow:hidden">
         <br><br><br> <br>  
         <div style="width: 100% !important;">
              <h1><small>Faculty</small></h1><br> <br>
@@ -509,7 +509,7 @@ if(isset($_POST["view"])) {
                             $titles=$row['title'];
                                  $names=$row['name']
                             ?>
-                            <div  class="col-md-6 col-lg-6 " style="height:auto;margin:10px" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock">
+                            <div  class="col-md-6 col-lg-5 " style="height:auto;margin:10px" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock">
                                 <video style="height:340px;width:100%;" loop autoplay="autoplay"  muted  >
                                     <source id="myVideo" name="myVideo" src="admin/uploads/Resources/<?php echo $names; ?>/video/<?php echo $filename; ?>#t=0,22 ">
                                 </video>
@@ -620,7 +620,72 @@ if(isset($_POST["view"])) {
 
 
 
+       <div style="float:left">
+                        Worksheets
+                    </div>
+                    <div style="float:right;padding:5px">
+                        <center>
+                            <img src="assets/user/images/noeye.png" style="height:15px">
+                            <img src="assets/user/images/Iconfeather-lock.png" style="height:15px">
+                        </center>
+                    </div>
 
+                    <br style="line-height:1">
+                    <hr/ style="border-bottom:2px solid #707070">
+
+
+                    <div class="row">
+                        <?php while($row = $rfileresults->fetch_assoc()) {
+                            $filename=$row['filename'];
+                            $titles=$row['title']
+                            ?>
+                            <div  class="col-md-2 col-lg-2 col-sm-1" style="height:180px;margin:15px ;box-shadow:0px 1px 1px 1px #E1D6D6;border-bottom: 6px solid #0A62A3">
+
+                               
+                                    <?php if(substr($filename,-3)=='doc' || substr($filename,-4)=='docx'){?>
+                                        <center>
+                                            <img src="assets/user/images/doc.png" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock"><br>
+
+                                            <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                        </center>
+                                    <?php }?>
+                           
+                            
+                                    <?php if(substr($filename,-3)=='ppt' || substr($filename,-4)=='pptx'){?>
+                                        <center>
+                                            <img src="assets/user/images/ppt.png" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock"><br>
+
+                                            <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                        </center>
+                                    <?php }?>
+                          
+                             
+                                    <?php if(substr($filename,-3)=='pdf' ){?>
+                                        <center>
+                                            <img src="assets/user/images/pdf.png" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock"><br>
+
+                                            <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                        </center>
+                                    <?php }?>
+                          
+                     
+                                    <?php if(substr($filename,-3)=='mp3' ){?>
+                                        <center>
+                                            <img src="assets/user/images/audio.png" style="height:80%" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock"><br>
+
+                                            <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                        </center>
+                                    <?php }?>
+                             
+
+                            </div>
+
+
+
+                        <?php }?>
+
+
+                    </div>
 
 
                   
@@ -720,8 +785,75 @@ if(isset($_POST["view"])) {
 
 
 
+       <div style="float:left">
+                  Games and Activity Ideas
+                    </div>
+                    <div style="float:right;padding:5px">
+                        <center>
+                            <img src="assets/user/images/Icon ionic-md-eye.png" style="height:15px">
+                            <img src="assets/user/images/Iconfeather-lock.png" style="height:15px">
+                        </center>
+                    </div>
+
+                    <br style="line-height:1">
+                    <hr/ style="border-bottom:2px solid #707070">
 
 
+
+
+
+                    <div class="row">
+                        <?php while($row = $rfileresultx->fetch_assoc()) {
+                            $filename=$row['filename'];
+                            $titles=$row['title']
+                            ?>
+                            <div  class="col-md-2 col-lg-2 col-sm-1" style="height:180px;margin:15px ;box-shadow:0px 1px 1px 1px #E1D6D6;border-bottom: 6px solid #0A62A3">
+
+                               
+                                    <?php if(substr($filename,-3)=='doc' || substr($filename,-4)=='docx'){?>
+                                        <center>
+                                            <img src="assets/user/images/doc.png" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock"><br>
+
+                                            <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                        </center>
+                                    <?php }?>
+                           
+                            
+                                    <?php if(substr($filename,-3)=='ppt' || substr($filename,-4)=='pptx'){?>
+                                        <center>
+                                            <img src="assets/user/images/ppt.png" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock"><br>
+
+                                            <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                        </center>
+                                    <?php }?>
+                          
+                             
+                                    <?php if(substr($filename,-3)=='pdf' ){?>
+                                        <center>
+                                            <img src="assets/user/images/pdf.png" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock"><br>
+
+                                            <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                        </center>
+                                    <?php }?>
+                          
+                     
+                                    <?php if(substr($filename,-3)=='mp3' ){?>
+                                        <center>
+                                            <img src="assets/user/images/audio.png" style="height:80%" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock"><br>
+
+                                            <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                        </center>
+                                    <?php }?>
+                             
+
+                            </div>
+
+
+
+                        <?php }?>
+
+
+                    </div>
                   
                     <?php } ?>
 
@@ -822,8 +954,73 @@ if(isset($_POST["view"])) {
 
                 <?php }} if (!isset($_SESSION['userid']) ||$cat=='paid' ){?>
 
+       <div style="float:left">
+            Artivlea
+                    </div>
+                    <div style="float:right;padding:5px">
+                        <center>
+                            <img src="assets/user/images/Icon ionic-md-eye.png" style="height:15px">
+                            <img src="assets/user/images/Iconfeather-lock.png" style="height:15px">
+                        </center>
+                    </div>
+
+                    <br style="line-height:1">
+                    <hr/ style="border-bottom:2px solid #707070">
 
 
+
+                    <div class="row">
+                        <?php while($row = $rfileresultxt->fetch_assoc()) {
+                            $filename=$row['filename'];
+                            $titles=$row['title']
+                            ?>
+                            <div  class="col-md-2 col-lg-2 col-sm-1" style="height:180px;margin:15px ;box-shadow:0px 1px 1px 1px #E1D6D6;border-bottom: 6px solid #0A62A3">
+
+                               
+                                    <?php if(substr($filename,-3)=='doc' || substr($filename,-4)=='docx'){?>
+                                        <center>
+                                            <img src="assets/user/images/doc.png" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock"><br>
+
+                                            <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                        </center>
+                                    <?php }?>
+                           
+                            
+                                    <?php if(substr($filename,-3)=='ppt' || substr($filename,-4)=='pptx'){?>
+                                        <center>
+                                            <img src="assets/user/images/ppt.png" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock"><br>
+
+                                            <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                        </center>
+                                    <?php }?>
+                          
+                             
+                                    <?php if(substr($filename,-3)=='pdf' ){?>
+                                        <center>
+                                            <img src="assets/user/images/pdf.png" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock"><br>
+
+                                            <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                        </center>
+                                    <?php }?>
+                          
+                     
+                                    <?php if(substr($filename,-3)=='mp3' ){?>
+                                        <center>
+                                            <img src="assets/user/images/audio.png" style="height:80%" data-toggle="tooltip" data-placement="bottom" title="Log In & Unlock"><br>
+
+                                            <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                        </center>
+                                    <?php }?>
+                             
+
+                            </div>
+
+
+
+                        <?php }?>
+
+
+                    </div>
 
 
 

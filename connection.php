@@ -1,9 +1,9 @@
 <?php
-$mysqli = new mysqli("localhost","root","","lms");
+$mysqli = new mysqli("localhost","root","","chrysaellect_meet");
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "lms";
+$dbname = "chrysaellect_meet";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

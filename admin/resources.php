@@ -593,7 +593,7 @@
 
 
 										<div class="col-sm-4 col-md-2">
-											<select class="form-control" name="filetype3" id="filetype2">
+											<select class="form-control" name="filetype2" id="filetype2">
 
 
                                                 <option value="video">Video</option>

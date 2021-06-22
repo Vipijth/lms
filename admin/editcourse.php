@@ -24,11 +24,13 @@ textarea:focus{outline :none; border:none;}
 		 if( document.getElementById("category").value=="free"){
 			  document.getElementById("amount").style.display="none";
 			  document.getElementById("am").value="0";
+			  document.getElementById("spam").style.display="none";
 		 }
 		 
 		   if( document.getElementById("category").value=="paid"){
 			  document.getElementById("amount").style.display="flex";
               document.getElementById("am").value="";
+			  document.getElementById("spam").style.display="flex";
 		 }
 		 
 		 
@@ -140,6 +142,24 @@ textarea:focus{outline :none; border:none;}
                                     
 								</div>
                              </div>
+
+
+							 <div class="form-group row mb-4" id="spam" >
+								<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Special Price</label>
+						
+								<div class="col-sm-4 col-md-3">
+									<div class="input-group mb-3"  >
+										<div class="input-group-prepend">
+											<span class="input-group-text" >
+												<i class="fas fa-rupee-sign"></i>
+											</span>
+										</div>
+										<input type="text" value="<?php echo $row["discount"];?>" name="spamount" required   class="form-control" aria-label="Amount (to the nearest ruppee)">
+									</div>
+								</div>
+							 </div>
+
+
                              <?php } ?>
 
                              <?php if($row["category"]=='free'){?>
@@ -168,7 +188,10 @@ textarea:focus{outline :none; border:none;}
 								</div>
                              </div>
                              <?php } ?>
+							 
 
+
+					
 							 <div class="form-group row mb-4" >
 								 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Add Thumbnail Image</label>
 								         <div class="col-sm-12 col-md-4" >
@@ -198,7 +221,21 @@ textarea:focus{outline :none; border:none;}
 		  
 								 </div>
 							 </div>
-
+							 <div class="form-group row mb-4">
+								 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Edit Skills</label>
+								 <div class="col-sm-12 col-md-2">
+									 <input type="text" name="skill1" value="<?php echo $row['skill1'] ?>"  required class="form-control inputtags">
+								 </div>
+								 <div class="col-sm-12 col-md-2">
+									 <input type="text" name="skill2" value="<?php echo $row['skill2'] ?>"   required class="form-control inputtags">
+								 </div>
+								 <div class="col-sm-12 col-md-2">
+									 <input type="text" name="skill3" value="<?php echo $row['skill3'] ?>"   required class="form-control inputtags">
+								 </div>
+								 <div class="col-sm-12 col-md-2">
+									 <input type="text" name="skill4"  value="<?php echo $row['skill4'] ?>"  required class="form-control inputtags">
+								  </div>
+		        	 		</div>
 
 							 <div class="form-group row mb-4">
 									 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Course Duration</label>
@@ -218,13 +255,15 @@ textarea:focus{outline :none; border:none;}
 									<select class="form-control selectric" name="resource">
 									<option>Select Your Resources</option>
 									<?php
- 											$sqlv = "SELECT * FROM rc where courseId!='$cid'";
+ 											/*$sqlv = "SELECT * FROM rc where courseId=$cid";
  												$resultv = $conn->query($sqlv);
 	 												if ($resultv->num_rows > 0) {
    
 		  									 while($row = $resultv->fetch_assoc()) {
 $rid=$row["resourceId"];
-$sql = "SELECT * FROM resources where id='$rid'";
+*/
+$sql = "SELECT  * FROM resources 
+WHERE id NOT IN (SELECT resourceId  FROM rc where courseId=$cid)";
 
 
 									
@@ -235,7 +274,7 @@ $sql = "SELECT * FROM resources where id='$rid'";
 									?>
 																	 <option value="<?php echo $row['id']   ?>"><?php echo $row['name']   ?></option>
                                                           
-									<?php }}}} ?>
+									<?php }} ?>
 									 
 									</select>
 								 </div>
@@ -245,7 +284,46 @@ $sql = "SELECT * FROM resources where id='$rid'";
 
 
 
-				
+							 <div class="form-group row mb-4">
+                            								 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Add Instructor</label>
+                            								 <div class="col-sm-4 col-md-4">
+                            										 <select   name="instructor" class="form-control selectric"  max-length="3">
+																			<option value="0">Select Your Instructor</option>
+					
+                                                                         
+					<?php
+                    
+									 $sql = "SELECT * FROM faculty where verified ='1'";
+                                
+										  $result = $conn->query($sql);
+											  if ($result->num_rows > 0) {
+											
+													while($row = $result->fetch_assoc()) {
+						  ?>
+																	 <option value="<?php echo $row['id']   ?>"><?php echo $row['fname']   ?></option>
+                                                          
+						<?php }} ?>
+                                                                                         
+                                                               		</select>
+                            								 </div>
+
+                            				 </div>
+
+
+
+				<div class="form-group row mb-4">
+								 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Add Keywords</label>
+								 <div class="col-sm-12 col-md-2">
+									 <input type="text" name="keyword[]"  class="form-control inputtags">
+								 </div>
+								 <div class="col-sm-12 col-md-2">
+									 <input type="text" name="keyword[]"  class="form-control inputtags">
+								 </div>
+								 <div class="col-sm-12 col-md-2">
+									 <input type="text" name="keyword[]"  class="form-control inputtags">
+								 </div>
+								
+			 </div>
 
 
 			

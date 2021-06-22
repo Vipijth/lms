@@ -22,7 +22,7 @@
       <link rel="stylesheet" href="assets/admin/css/components.css">
       <!-- Custom style CSS -->
       <link rel="stylesheet" href="assets/admin/css/custom.css">
-      <link rel="icon" href="../assets/user/images/logo/logolms.png" type="image/png" />
+      <link rel="icon" href="assets/admin//images/logo/logo.png" type="image/png" />
    </head>
    <body>
       <div class="loader"></div>
@@ -43,7 +43,7 @@
                   <li class="dropdown">
                      <a href="#" data-toggle="dropdown"
                         class="nav-link dropdown-toggle nav-link-lg nav-link-user"> 
-						 <img alt="image" src="assets/admin/images/logo/logolms.png" class="user-img-radious-style">
+						 <img alt="image" src="assets/admin//images/logo/logo.png" class="user-img-radious-style">
 						 <span class="d-sm-none d-lg-inline-block"></span>
 					  </a>
                      <div class="dropdown-menu dropdown-menu-right pullDown">

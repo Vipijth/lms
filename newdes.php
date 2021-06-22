@@ -2,7 +2,7 @@
 include ("header.php");
 include ("connection.php");
 $id = $_GET['csid'];
-
+$eca=$_SESSION['eca'];
 if(isset($_POST["enrolllog"])) {
 
 
@@ -106,6 +106,7 @@ $(document).bind("contextmenu",function(ev){
     $skill2=$row['skill2'];
     $skill3=$row['skill3'];
     $skill4=$row['skill4'];
+    $discount=$row['discount'];
     $st=$row['startdate'];
     $rid=$row['id'];
     $cert=$row['certified'];
@@ -224,8 +225,15 @@ $ucount=$checkresult3->num_rows ;
                                     ?>
                                     <div class="row">
                                         <br><br>
-                                        <div  class="col-md-5" style="font-size:20px;margin:10px;border:1px dotted #707070;height:50px;padding:5px 10px;color:#0A62A3;">
-                                            &#8377;<?php echo $amount ?>
+                                        <div  class="col-md-5" style="font-size:20px;margin:10px;border:1px dotted #707070;height:50px;padding:5px 8px;color:#0A62A3;">
+                                         
+                                         
+                                         <?php if($eca=='1' && $discount!=null){ 
+?>                                         <Small>  <strike> &#8377;<?php echo $amount ?></strike></Small>  &#8377;<?php echo $discount ?>
+                                         <?php  }else {?>
+                                            &#8377;
+<?php echo $amount ?>
+            <?php  }?>
                                         </div>
                                         <div class="col-md-5"  style="margin:10px;border:1px dotted #707070;height:50px;padding:10px 10px;color:#0A62A3;font-size: 10px">
                                             <span style="color:#0A62A3"> Enroll for FREE </span>
@@ -257,7 +265,14 @@ $ucount=$checkresult3->num_rows ;
                                                     <input type="hidden" name="userid" value="<?php echo $_SESSION['userid']; ?>">
                                                     <input type="hidden" name="subid" value="<?php echo $id; ?>">
                                                     <input type="hidden" name="subtype" value="course">
-                                                    <input type="hidden" name="amount" value="<?php echo $amount; ?>">
+
+                                                    <?php if($eca=='1' && $discount!=null){ ?>
+                                                        <input type="hidden" name="amount" value="<?php echo $discount; ?>">
+                                         <?php  }else {?>
+                                      
+                                            <input type="hidden" name="amount" value="<?php echo $amount; ?>">
+            <?php  }?>
+                                           
                                                     <button Style="width:100px;padding:10px 1px;font-size:10px;border:none; background:#0A62A3; color:white;font-family: Segoe UI semibold" name="addtocart">
                                                         Add to Cart</button>&nbsp;&nbsp;
                                                 </form>
@@ -424,12 +439,18 @@ $ucount=$checkresult3->num_rows ;
             <br>
 
             <?php
+               $resid='';
             $rcsql= "SELECT * FROM rc where courseId='$id'";
             $rcresult = $conn->query($rcsql);
+        
             if ($rcresult->num_rows > 0) {
 
             while($row = $rcresult->fetch_assoc()) {
             $resid=$row['resourceId'];
+       
+             
+           
+            $namex='';
             $recsql= "SELECT * FROM resources where id='$resid'";
             $recresult = $conn->query($recsql);
             if ($recresult->num_rows > 0) {
@@ -437,9 +458,9 @@ $ucount=$checkresult3->num_rows ;
             while($row = $recresult->fetch_assoc()) {
             $rname=$row['name'];
             $recid=$row['id'];
-
+            $namex=$row['name'];
             ?>
-                <form action="" method="post" target="#tab-syllabus">
+                <form action="" method="get" target="#tab-syllabus">
                     <input type="hidden" name="rcid" value="<?php echo $recid ?>">
                     <input type="hidden" name="rname" value="<?php echo $rname ?>">
                     <input type="hidden" name="csid" value="<?php echo $id ?>">
@@ -457,9 +478,12 @@ $ucount=$checkresult3->num_rows ;
 
             <?php
             $rfilesql= "";
-            if(isset($_POST["resq"])) {
-                $resid = $_POST["rcid"];
-                $rname = $_POST["rname"];
+            if(isset($_GET["resq"])) {
+                $resid = $_GET["rcid"];
+                $rname = $_GET["rname"];
+                
+                $namex = $_GET["rname"];
+
                 $rfilesql= "SELECT * FROM resources_files where Rid='$resid' and filetype='video'";
             }
             else{
@@ -531,7 +555,10 @@ if(isset($_POST["view"])) {
 
                         <br>
                         <div class="row   " style="background:white;font-family:Segoe UI regular;font-size:12px;text-align:left;color:#0A62A3;">
-                            <?php while($row = $rfileresult->fetch_assoc()) {
+                            <?php 
+                            
+                          
+                            while($row = $rfileresult->fetch_assoc()) {
                                 $filename=$row['filename'];
                                 $titles=$row['title'];
                                 $names=$row['name']
@@ -546,6 +573,7 @@ if(isset($_POST["view"])) {
                                    <input type="hidden" value="<?php echo $filename; ?>" name="file">
 										<input type="hidden" value="<?php echo $names; ?>" name="names">
 								    <input type="hidden" value="<?php echo $id; ?>" name="csid">
+                                    <input type="text" value="<?php echo $row['id']; ?>" name="rxid">
 								</button>
 								   
                                     <center>
@@ -644,7 +672,7 @@ if(isset($_POST["view"])) {
                             ?>
                             <div  class="col-md-2 col-lg-2 col-sm-1" style="height:180px;margin:15px ;box-shadow:0px 1px 1px 1px #E1D6D6;border-bottom: 6px solid #0A62A3">
 
-                                <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                                <a href="admin/uploads/Resources/<?php echo $names; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
                                     <?php if(substr($filename,-3)=='doc' || substr($filename,-4)=='docx'){?>
                                         <center>
                                             <img src="assets/user/images/doc.png"><br>
@@ -653,7 +681,7 @@ if(isset($_POST["view"])) {
                                         </center>
                                     <?php }?>
                                 </a>
-                                <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                                <a href="admin/uploads/Resources/<?php echo $names; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
                                     <?php if(substr($filename,-3)=='ppt' || substr($filename,-4)=='pptx'){?>
                                         <center>
                                             <img src="assets/user/images/ppt.png"><br>
@@ -662,12 +690,12 @@ if(isset($_POST["view"])) {
                                         </center>
                                     <?php }?>
                                 </a>
-                                <a href="admin/uploads/Resources/<?php echo $title; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
+                                <a href="admin/uploads/Resources/<?php echo $namex; ?>/worksheet/<?php echo $filename; ?>" target="iframe_a">
                                     <?php if(substr($filename,-3)=='pdf' ){?>
                                         <center>
                                             <img src="assets/user/images/pdf.png"><br>
 
-                                            <?php echo $titles; ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+                                            <?php echo $titles.$namex ?>&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
                                         </center>
                                     <?php }?>
                                 </a>

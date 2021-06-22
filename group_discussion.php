@@ -3,10 +3,10 @@ include("header.php");
 include ("connection.php");
 $subid= $_POST['rid'];
 $did=$_POST['did'];
-
 $_SESSION['did']=$did;
+$_SESSION['srid']=$subid;
 
-
+   header('Location: course1.php');
 if(isset($_POST["send"])) {
 	
 	  // set the timezone first
@@ -25,25 +25,76 @@ $date1 =  date("H:i a");
 	$question=$conn->real_escape_string($_POST['question']);
 	
 	try{
-		    $sql = 'INSERT INTO discussionchat(discussionid,userid,username,message,utype,senddate) VALUES 
-   ("'.$did.'","'.$userid.'","'.$username.'","'.$question.'","'.$utype.'","'.$time.'")';
 
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>
-alert('Answer Updated successfully');
-</script>";
+
+        if($_FILES['image']['name']==null){
+            $sql = 'INSERT INTO discussionchat(discussionid,userid,username,message,utype,senddate) VALUES 
+            ("'.$did.'","'.$userid.'","'.$username.'","'.$question.'","'.$utype.'","'.$time.'")';
+         
+             if ($conn->query($sql) === TRUE) {
+               
+                 echo "<script>
+         alert('Answer Updated successfully');
+         </script>";
+             
+             } else {
+                 echo "Error: " . $sql . "<br>" . $conn->error;
+             }
+    }else{ 
+
+
+
+
+    $rand=rand(10000,90000);
+    $target_dir = "admin/uploads/msg/".$rand;
+    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+    $imagename=$rand.basename($_FILES["image"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    if (!file_exists('admin/uploads/msg')) {
+    mkdir('admin/uploads/msg', 0777, true);
+    }
+    // Check if image file is a actual image or fake image
     
+    
+    // Allow certain file formats
+    
+    
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+      echo "Sorry, your file was not uploaded.";
+    // if everything is ok, try to upload file
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+      if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+          
+        //echo "The file ". htmlspecialchars( $rand.basename( $_FILES["image"]["name"])). " has been uploaded.";
+       // echo $imagename;
+       $sql = 'INSERT INTO discussionchat(discussionid,userid,username,message,utype,senddate,filename) VALUES 
+("'.$did.'","'.$userid.'","'.$username.'","'.$question.'","'.$utype.'","'.$time.'","'.$imagename.'")';
+       if ($conn->query($sql) === TRUE) {
+    
+         $last_id = $conn->insert_id;
+         echo "<script>
+         alert('Answer Updated successfully');
+         </script>";
+         //header('Location: resources.php');
+       } else {
+         echo "Error: " . $sql . "<br>" . $conn->error;
+       }
+    
+      } else {
+        echo "Sorry, there was an error uploading your file.";
+      }
     }
 	}
+}
 	catch(Exception $e) {
   echo 'Message: ' .$e->getMessage();
 }
 }
 ?>
 
-
+<link rel="stylesheet" href="admin/assets/admin/bundles/summernote/summernote-bs4.css">
 <style>
     .accordion {
         background-color: #EB4C5E;
@@ -102,7 +153,23 @@ alert('Answer Updated successfully');
         outline:none
     }
 </style>
+<script>
 
+function fileTypeValidation() {
+
+var fileInput = document.getElementById('file');
+var filePath = fileInput.value;
+var  allowedExtensions =
+                   /(\.pdf|\.doc|\.docx|\.ppt)$/i;
+
+               if (!allowedExtensions.exec(filePath)) {
+                   alert('Invalid file type!Accepted Types:.pdf,.doc,.docx,.ppt ');
+                   fileInput.value = '';
+                   
+                   return false;
+               }
+}
+    </script>
 
 <div class="container-fluid" style="padding-top: 150px;height:auto">
 
@@ -289,7 +356,9 @@ alert('Answer Updated successfully');
  <div class="row justify-content-center" style="background: #eeeeee;padding-top:60px;height:auto">
 
 	 <div class="col-lg-10" style="text-align:justify;font-family: segoe ui semibold;font-size: 18px;color:#707070; der-bottom: 1px dotted #E000FF;background: white;padding: 20px 20px" >
-		<?php echo $row['topic'] ?>
+     <big><?php echo $row['title'] ?></big>
+        <br><br>
+        <?php echo $row['topic'] ?>
 		  <div class="row justify-content-between" style="padding:20px">
 			  	 <p style="font-size:14px;color:#0A62A3 ;">
 	     <i> 	<?php echo $row['course'] ?></i>
@@ -328,14 +397,16 @@ alert('Answer Updated successfully');
 		 My Answer <li class="fa fa-comments"></li>
 	 </div>	
 	<div class="col-lg-8"  >
-		<form action="" method="post">
+		<form action="" method="post" enctype="multipart/form-data">
 	
 			
 			<br>
-					<textarea required rows="10" placeholder="Type Your Answer Here..." style="width:100%;  resize: none;border:none;padding:10px 20px" maxlength="600" name="question"></textarea>
+					<textarea class="summernote" required rows="10" placeholder="Type Your Answer Here..." style="width:100%;  resize: none;border:none;padding:10px 20px" maxlength="600" name="question"></textarea>
 			
 
-		<br>	<br>	
+		<br>	<br>
+      <label> Attachment <li class="fa fa-paperclip"></li></label>
+        <input type="file" name="image" id="file" onchange=" return  fileTypeValidation() "  style="border:none; background:white;color:#707070" >
   <div class="row justify-content-end" >
 	  <input type="hidden" value="<?php echo $subid ?> "  name="subid">
 <input type="hidden" value="<?php echo $subid ?> "  name="rid">
@@ -375,7 +446,9 @@ alert('Answer Updated successfully');
     }
 </script>
 
-
+<script src="admin/assets/admin/js/app.min.js"></script>
+<script src="admin/assets/admin/bundles/summernote/summernote-bs4.js"></script>
+<script src="admin/assets/admin/js/scripts.js"></script>
 <?php
 include ("footer.php");
 ?>

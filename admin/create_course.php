@@ -9,6 +9,7 @@ $skill= $_POST['skills'];
 $keyword= $_POST['keyword'];
 $resource= $_POST['resource'];
 $startdate= $_POST['startdate'];
+$spamount= $_POST['spamount'];
 $enddate= $_POST['enddate'];
 $hours= $_POST['hours'];
 $ctype= $_POST['ctype'];
@@ -44,8 +45,8 @@ if ($uploadOk == 0) {
       
     //echo "The file ". htmlspecialchars( $rand.basename( $_FILES["image"]["name"])). " has been uploaded.";
    // echo $imagename;
-   $sql = 'INSERT INTO course(name, image,category, amount,about,startdate,enddate,skill1,skill2,skill3,skill4,certified,hours,type ) VALUES 
-   ("'.$title.'","'.$imagename.'","'.$category.'","'.$amount.'","'.$about.'","'.$startdate.'","'.$enddate.'","'.$skill[0].'","'.$skill[1].'","'.$skill[2].'","'.$skill[3].'","'.$cert.'","'.$hours.'","'.$ctype.'")';
+   $sql = 'INSERT INTO course(name, image,category, amount,about,startdate,enddate,skill1,skill2,skill3,skill4,certified,hours,type,discount ) VALUES 
+   ("'.$title.'","'.$imagename.'","'.$category.'","'.$amount.'","'.$about.'","'.$startdate.'","'.$enddate.'","'.$skill[0].'","'.$skill[1].'","'.$skill[2].'","'.$skill[3].'","'.$cert.'","'.$hours.'","'.$ctype.'","'.$spamount.'")';
    
    if ($conn->query($sql) === TRUE) {
 

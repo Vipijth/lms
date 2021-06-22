@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteRule ^index.html?$ index.php
+RewriteRule ^course.html?$ course.php
+RewriteRule ^resource.html?$ resource.php
+RewriteRule ^blog6.html?$ blog6.php
+RewriteRule ^blog7.html?$ blog7.php
+RewriteRule ^blog8.html?$ blog8.php
+RewriteRule ^faculty.html?$ faculty.php
+RewriteRule ^summit.html?$ summit.php
+RewriteRule ^facdash.html?$ facdash.php
+
+RewriteRule ^facdash2.html?$ facdash2.php
+RewriteRule ^feedback.html?$ feedback.php

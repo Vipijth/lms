@@ -115,7 +115,7 @@ alert('Updated successfully');
 
         <div class="row justify-content-md-around">
 
-            <div class="col-md-5 col-lg-5 " style="height:60px; margin: 10px;    box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
+            <div class="col-md-5 col-lg-5 " style="height:auto; margin: 10px;    box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
 
                     <div style="float:left;width:15%;padding:15px">
                         <span style="color:#0A62A3">
@@ -132,7 +132,7 @@ alert('Updated successfully');
 
             </div>
 
-            <div class="col-md-5 col-lg-5 " style="height:60px; margin: 10px;    box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
+            <div class="col-md-5 col-lg-5 " style="height:auto; margin: 10px;    box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
 
                 <div style="float:left;width:15%;padding:15px">
                         <span style="color:#0A62A3">
@@ -151,7 +151,7 @@ alert('Updated successfully');
         </div><br>
         <div class="row justify-content-md-around">
 
-        <div class="col-md-5 col-lg-5 " style="height:60px; margin: 10px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
+        <div class="col-md-5 col-lg-5 " style="height:auto; margin: 10px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
 
                 <div style="float:left;width:15%;padding:15px">
                         <span style="color:#0A62A3">
@@ -168,7 +168,7 @@ alert('Updated successfully');
 
             </div>
 
-            <div class="col-md-5 col-lg-5 " style="height:60px; margin: 10px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
+            <div class="col-md-5 col-lg-5 " style="height:auto; margin: 10px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
 
                 <div style="float:left;width:15%;padding:15px">
                         <span style="color:#0A62A3">
@@ -190,12 +190,12 @@ alert('Updated successfully');
         </div>
 
         <form action="" method="post">
-        <div class="row " style="height:60px; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
-            <div style="float:left;width:75%;padding:15px 30px">
+        <div class="row " style="height:auto; margin: 30px; padding:10px;  box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
+            <div class="col-lg-7">
 
                 <small>Can schools registered with us send to you their recruitment requirement</small>
             </div>
-            <div style="float:left;width:25%;padding:15px">
+            <div class="col-lg-4">
                 <center>
                     <select  required name="allow">
                         <option>Yes</option>
@@ -208,7 +208,7 @@ alert('Updated successfully');
 
 
 
-        <div class="row " style="height:60px; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
+        <div class="row " style="height:auto; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
             <div style="float:left;width:75%;padding:15px 30px">
 
                 <small>Your current Age</small>
@@ -228,7 +228,7 @@ alert('Updated successfully');
         </div>
 
 
-        <div class="row " style="height:60px; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
+        <div class="row " style="height:auto; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
             <div style="float:left;width:75%;padding:15px 30px">
 
                 <small>Completed number of years of experience working as teacher</small>
@@ -250,7 +250,7 @@ alert('Updated successfully');
 
 
 
-        <div class="row " style="height:60px; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
+        <div class="row " style="height:auto; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
             <div style="float:left;width:75%;padding:15px 30px">
 
                 <small>Qualification</small>
@@ -272,7 +272,7 @@ alert('Updated successfully');
 
 
 
-        <div class="row " style="height:60px; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
+        <div class="row " style="height:auto; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
             <div style="float:left;width:75%;padding:15px 30px">
 
                 <small>Country of current residence</small>
@@ -290,7 +290,7 @@ alert('Updated successfully');
 
 
 
-        <div class="row " style="height:60px; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
+        <div class="row " style="height:auto; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
             <div style="float:left;width:75%;padding:15px 30px">
 
                 <small>State of current residence</small>
@@ -306,7 +306,7 @@ alert('Updated successfully');
 
 
 
-        <div class="row " style="height:60px; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
+        <div class="row " style="height:auto; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
             <div style="float:left;width:75%;padding:15px 30px">
 
                 <small>Town / City of current residence</small>
@@ -322,7 +322,7 @@ alert('Updated successfully');
 
 
 
-        <div class="row " style="height:60px; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
+        <div class="row " style="height:auto; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
             <div style="float:left;width:75%;padding:15px 30px">
 
                 <small>Current School</small>
@@ -336,7 +336,7 @@ alert('Updated successfully');
 
 
 
-        <div class="row " style="height:60px; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
+        <div class="row " style="height:auto; margin: 30px;   box-shadow: 0 11px 11px rgba(0,0,0,0.15), 0 4px 14px rgba(0,0,0,0.22);">
             <div style="float:left;width:75%;padding:15px 30px">
 
                 <small>Current Position</small>
@@ -350,7 +350,7 @@ alert('Updated successfully');
 
 
 
-        <div class="row justify-content-end" style="height:60px; margin: 30px;  ">
+        <div class="row justify-content-end" style="height:auto; margin: 30px;  ">
 
 
 <button class="button" name="save">
